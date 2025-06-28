@@ -11,7 +11,7 @@ class ProjectGenesisApp {
 
     initElements() {
         // DOM Elements
-        this.mainHeader = document.getElementById('main-header');
+        this.heroHeader = document.querySelector('.hero-header');
         this.worldviewBtn = document.getElementById('btn-worldview');
         this.charactersBtn = document.getElementById('btn-characters');
         
@@ -62,11 +62,11 @@ class ProjectGenesisApp {
             contentToShow.classList.remove('hidden');
         }
         
-        // Show/hide main header and nav
+        // Show/hide hero header
         if (contentToShow === this.worldviewContent || contentToShow === this.charactersContent) {
-            this.mainHeader.classList.remove('hidden');
+            this.heroHeader.classList.remove('hidden');
         } else {
-            this.mainHeader.classList.add('hidden');
+            this.heroHeader.classList.add('hidden');
         }
     }
 
