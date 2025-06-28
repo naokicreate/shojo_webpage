@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界観・キャラクター設定 | PROJECT: GENESIS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-900">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <div id="main-header">
+            <header class="text-center mb-8">
+                <h1 class="font-orbitron text-3xl md:text-5xl font-bold text-white tracking-widest">PROJECT: GENESIS</h1>
+            </header>
+
+            <nav class="flex justify-center gap-4 mb-12">
+                <button id="btn-worldview" class="tab-button font-orbitron text-lg py-2 px-8 rounded-lg active">WORLDVIEW</button>
+                <button id="btn-characters" class="tab-button font-orbitron text-lg py-2 px-8 rounded-lg">CHARACTERS</button>
+            </nav>
+        </div>
+
+        <!-- コンテンツエリア -->
+        <main>
+            <!-- 世界観メインページ -->
+            <div id="content-worldview">
+                <header class="text-center mb-12">
+                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-white tracking-widest">WORLDVIEW</h2>
+                    <p class="text-gray-400 mt-2 text-lg">世界観設定</p>
+                </header>
+
+                <section class="mb-16">
+                    <div class="card p-6 md:p-8 rounded-lg max-w-4xl mx-auto">
+                        <h3 class="font-orbitron text-2xl md:text-3xl font-bold text-center text-white mb-6">The Great Cataclysm & Bio-Shock</h3>
+                        <p class="text-base md:text-lg leading-relaxed text-gray-300">
+                            未曾有の大災害――後に「神罰の刻（ラグナロク・フォール）」と呼ばれる巨大隕石の落下により、地上の生態系は崩壊。人類は汚染された大地を捨て、地下シェルターでの生活を余儀なくされた。<br><br>
+                            しかし、脅威は災害そのものに留まらなかった。隕石に含まれる未知の成分は、生命の設計図を書き換える恐怖の現象<span class="font-bold text-red-400">「バイオ・ショック」</span>を誘発。これに感染した生物は、生命活動を停止し無機物と化す<span class="font-bold text-blue-300">「異質化」</span>、あるいは身体の一部が異常発達・変質する<span class="font-bold text-purple-300">「異体化」</span>という二つの悲劇的な末路を辿る。異体化した生物は自我を失い、破壊衝動の化身として世界を彷徨うことになる。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="mb-16">
+                    <div class="card rounded-lg overflow-hidden max-w-5xl mx-auto">
+                         <h3 class="font-orbitron text-2xl md:text-3xl font-bold text-center text-white pt-6">WORLD MAP</h3>
+                         <div class="p-4"><img src="https://placehold.co/1200x600/111827/4b5563?text=WORLD+MAP" alt="ワールドマップの画像" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/1f2937/9ca3af?text=IMAGE+NOT+FOUND';"></div>
+                    </div>
+                </section>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16">
+                    <!-- ロジック派カード -->
+                    <div class="card flex flex-col rounded-lg overflow-hidden border-t-4 border-cyan-400 border-glow-cyan">
+                        <img src="https://placehold.co/600x300/111827/06b6d4?text=AEGIS+CITYSCAPE" alt="ロジック派の都市景観" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8 flex-grow flex flex-col">
+                            <h3 class="font-orbitron text-3xl font-bold text-cyan-300 text-shadow-cyan mb-4">ロジック派：AEGIS</h3>
+                            <p class="text-gray-300 mb-6 flex-grow">地上に残された最後の理想郷。AIによる絶対管理社会。</p>
+                            <button class="details-button view-aegis-btn mt-auto w-full bg-cyan-500/80 text-white font-bold py-3 rounded-lg">詳しく見る</button>
+                        </div>
+                    </div>
+                    <!-- 感情派カード -->
+                    <div class="card flex flex-col rounded-lg overflow-hidden border-t-4 border-pink-500 border-glow-pink">
+                        <img src="https://placehold.co/600x300/111827/ec4899?text=GEHENNA+CITYSCAPE" alt="感情派の都市景観" class="w-full h-48 object-cover">
+                        <div class="p-6 md:p-8 flex-grow flex flex-col">
+                            <h3 class="font-orbitron text-3xl font-bold text-pink-400 text-shadow-pink mb-4">感情派：GEHENNA</h3>
+                            <p class="text-gray-300 mb-6 flex-grow">地下に広がる混沌の自由都市。欲望と芸術が渦巻く。</p>
+                            <button class="details-button view-gehenna-btn mt-auto w-full bg-pink-500/80 text-white font-bold py-3 rounded-lg">詳しく見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- キャラクターページ -->
+            <div id="content-characters" class="hidden">
+                 <header class="text-center mb-12">
+                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-white tracking-widest">CHARACTERS</h2>
+                    <p class="text-gray-400 mt-2 text-lg">登場人物</p>
+                </header>
+                
+                <!-- ユノのキャラクター -->
+                <div class="mb-16">
+                    <div class="card rounded-lg overflow-hidden border border-cyan-700/50 border-glow-cyan max-w-6xl mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                            <!-- 左側：立ち絵画像 -->
+                            <div class="lg:col-span-2 bg-gradient-to-b from-cyan-900/20 to-cyan-800/10 flex items-center justify-center p-6 lg:p-8">
+                                <div class="w-full max-w-sm mx-auto">
+                                    <img src="chara_yuka_001.png" alt="ユノの立ち絵" class="character-portrait w-full h-auto object-contain rounded-lg shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/375x1024/1f2937/9ca3af?text=CHARACTER+IMAGE';">
+                                </div>
+                            </div>
+                            <!-- 右側：キャラクター情報 -->
+                            <div class="lg:col-span-3 p-6 md:p-8 lg:p-10 flex flex-col justify-center character-bg-gradient">
+                                <div class="space-y-8">
+                                    <div class="text-center lg:text-left">
+                                        <h3 class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-300 text-shadow-cyan mb-3">ユノ</h3>
+                                        <p class="font-orbitron text-xl md:text-2xl lg:text-3xl text-cyan-400 mb-8">Yuno (Unit 703)</p>
+                                    </div>
+                                    
+                                    <div class="space-y-6">
+                                        <div class="border-l-4 border-cyan-400 pl-6">
+                                            <h4 class="text-xl font-bold text-white mb-3">プロフィール</h4>
+                                            <p class="text-gray-300 leading-relaxed text-lg">
+                                                貢献価値テストで満点を叩き出したAEGISの至宝。14歳という若さで、最も危険な任務が多いとされる公安部隊に配属されたエリート。感情の起伏が極端に少なく、常にぼーっとしているように見える。
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="character-info-grid mt-8">
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">年齢</h5>
+                                                <p class="text-gray-300 text-base">14歳</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">所属</h5>
+                                                <p class="text-gray-300 text-base">AEGIS 公安部隊</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">特徴</h5>
+                                                <p class="text-gray-300 text-base">感情表現が少ない</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">能力</h5>
+                                                <p class="text-gray-300 text-base">貢献価値テスト満点</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ソイルのキャラクター -->
+                <div class="mb-16">
+                    <div class="card rounded-lg overflow-hidden border border-cyan-700/50 border-glow-cyan max-w-6xl mx-auto">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                            <!-- 左側：キャラクター情報（ソイルは逆配置） -->
+                            <div class="lg:col-span-3 p-6 md:p-8 lg:p-10 flex flex-col justify-center character-bg-gradient lg:order-1">
+                                <div class="space-y-8">
+                                    <div class="text-center lg:text-left">
+                                        <h3 class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-300 text-shadow-cyan mb-3">ソイル</h3>
+                                        <p class="font-orbitron text-xl md:text-2xl lg:text-3xl text-cyan-400 mb-8">Soil (Unit 629)</p>
+                                    </div>
+                                    
+                                    <div class="space-y-6">
+                                        <div class="border-l-4 border-cyan-400 pl-6">
+                                            <h4 class="text-xl font-bold text-white mb-3">プロフィール</h4>
+                                            <p class="text-gray-300 leading-relaxed text-lg">
+                                                ユノの兄であり、AEGISの若き分析官。20代。他人の感情が色や形として「見えてしまう」特殊能力を持つ。ユノとは対照的に人間らしい感情を持つが、能力ゆえに増幅される感情の波を必死にコントロールしている。
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="character-info-grid mt-8">
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">年齢</h5>
+                                                <p class="text-gray-300 text-base">20代</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">所属</h5>
+                                                <p class="text-gray-300 text-base">AEGIS 分析部</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">関係</h5>
+                                                <p class="text-gray-300 text-base">ユノの兄</p>
+                                            </div>
+                                            <div class="bg-gray-800/60 rounded-lg p-4 border border-cyan-500/20">
+                                                <h5 class="text-cyan-300 font-bold mb-2 text-lg">特殊能力</h5>
+                                                <p class="text-gray-300 text-base">感情視覚化</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 右側：立ち絵画像（ソイルは右側に配置） -->
+                            <div class="lg:col-span-2 bg-gradient-to-b from-cyan-900/20 to-cyan-800/10 flex items-center justify-center p-6 lg:p-8 lg:order-2">
+                                <div class="w-full max-w-sm mx-auto">
+                                    <img src="https://placehold.co/375x1024/111827/06b6d4?text=SOIL+CHARACTER" alt="ソイルの立ち絵" class="character-portrait w-full h-auto object-contain rounded-lg shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/375x1024/1f2937/9ca3af?text=CHARACTER+IMAGE';">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ロジック派：AEGIS 詳細ページ -->
+            <div id="content-aegis" class="hidden">
+                <button class="back-to-worldview-btn text-cyan-300 font-bold mb-8 inline-flex items-center gap-2 hover:underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    WORLDVIEWに戻る
+                </button>
+
+                <header class="text-center mb-12 border-b-2 border-cyan-500/30 pb-8">
+                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-cyan-300 text-shadow-cyan tracking-widest">AEGIS</h2>
+                    <p class="text-gray-400 mt-2 text-lg">ロジック派</p>
+                </header>
+
+                <div class="card p-6 md:p-8 rounded-lg mb-12">
+                    <h3 class="font-orbitron text-2xl text-white mb-4">AEGIS MAP</h3>
+                    <img src="https://placehold.co/1200x500/111827/06b6d4?text=AEGIS+AREA+MAP" alt="AEGISのマップ" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                </div>
+
+                <div class="card p-6 md:p-8 rounded-lg">
+                    <h3 class="font-orbitron text-2xl text-white mb-4">設定資料 GALLERY</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+1" alt="AEGIS設定資料1" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+2" alt="AEGIS設定資料2" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+3" alt="AEGIS設定資料3" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+4" alt="AEGIS設定資料4" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 感情派：GEHENNA 詳細ページ -->
+            <div id="content-gehenna" class="hidden">
+                <button class="back-to-worldview-btn text-pink-400 font-bold mb-8 inline-flex items-center gap-2 hover:underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    WORLDVIEWに戻る
+                </button>
+
+                <header class="text-center mb-12 border-b-2 border-pink-500/30 pb-8">
+                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-pink-400 text-shadow-pink tracking-widest">GEHENNA</h2>
+                    <p class="text-gray-400 mt-2 text-lg">感情派</p>
+                </header>
+
+                <div class="card p-6 md:p-8 rounded-lg mb-12">
+                    <h3 class="font-orbitron text-2xl text-white mb-4">GEHENNA MAP</h3>
+                    <img src="https://placehold.co/1200x500/111827/ec4899?text=GEHENNA+AREA+MAP" alt="GEHENNAのマップ" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                </div>
+
+                <div class="card p-6 md:p-8 rounded-lg">
+                    <h3 class="font-orbitron text-2xl text-white mb-4">設定資料 GALLERY</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+1" alt="GEHENNA設定資料1" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+2" alt="GEHENNA設定資料2" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+3" alt="GEHENNA設定資料3" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+4" alt="GEHENNA設定資料4" class="rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>&copy; PROJECT: GENESIS Committee</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
