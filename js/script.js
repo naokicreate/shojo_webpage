@@ -6,6 +6,7 @@ class ProjectGenesisApp {
         this.initElements();
         this.initEventListeners();
         this.initializeApp();
+        this.initImageModal();
     }
 
     initElements() {
@@ -83,9 +84,73 @@ class ProjectGenesisApp {
         this.showContent(this.worldviewContent);
         this.setActiveTab(this.worldviewBtn);
     }
+
+    initImageModal() {
+        // Create modal HTML
+        const modalHTML = `
+            <div id="image-modal" class="image-modal">
+                <div class="image-modal-content">
+                    <button class="image-modal-close" onclick="closeImageModal()">&times;</button>
+                    <img id="modal-image" src="" alt="拡大画像">
+                </div>
+            </div>
+        `;
+        
+        // Add modal to body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // Add click event listeners to gallery images
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('gallery-image')) {
+                this.openImageModal(e.target.src, e.target.alt);
+            }
+        });
+
+        // Close modal when clicking outside image
+        document.getElementById('image-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'image-modal') {
+                this.closeImageModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                this.closeImageModal();
+            }
+        });
+    }
+
+    openImageModal(src, alt) {
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        
+        modalImage.src = src;
+        modalImage.alt = alt;
+        modal.classList.add('active');
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+
+    closeImageModal() {
+        const modal = document.getElementById('image-modal');
+        modal.classList.remove('active');
+        
+        // Restore body scroll
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Global function for modal close button
+function closeImageModal() {
+    const app = window.projectGenesisApp;
+    if (app) {
+        app.closeImageModal();
+    }
 }
 
 // アプリケーション起動
 document.addEventListener('DOMContentLoaded', () => {
-    new ProjectGenesisApp();
+    window.projectGenesisApp = new ProjectGenesisApp();
 });

@@ -4,7 +4,7 @@
 
 ## ファイル構造
 
-```
+```text
 shojo_webpage/
 ├── index.html              # メインHTMLファイル
 ├── chara_yuka_001.png      # キャラクター画像
@@ -24,13 +24,16 @@ shojo_webpage/
 ## ファイルの役割
 
 ### HTML ファイル
+
 - **index.html**: メインのHTMLページ。基本構造とナビゲーションを含む
 - **pages/*.html**: 各ページの個別コンテンツ。動的に読み込まれる
 
 ### CSS ファイル
+
 - **css/styles.css**: 全体のスタイリング、フォント、カラーテーマ、アニメーション
 
 ### JavaScript ファイル
+
 - **js/script.js**: メインアプリケーションロジック。ページ切り替え、イベント処理
 - **js/pageLoader.js**: ページコンテンツの動的読み込み機能
 
@@ -50,19 +53,23 @@ shojo_webpage/
 ## 開発者向け情報
 
 ### 新しいページの追加方法
+
 1. `pages/` ディレクトリに新しいHTMLファイルを作成
 2. `js/script.js` の `initEventListeners()` にイベントリスナーを追加
 3. 必要に応じて `index.html` にナビゲーションボタンを追加
 
 ### スタイルの変更
+
 - `css/styles.css` でグローバルスタイルを管理
 - Tailwind CSSクラスでインラインスタイリング
 
 ## ブラウザサポート
+
 - Chrome (推奨)
 - Firefox
 - Safari
 - Edge
 
 ## ライセンス
+
 © PROJECT: GENESIS Committee
