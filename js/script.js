@@ -12,15 +12,18 @@ class ProjectGenesisApp {
     initElements() {
         // DOM Elements
         this.heroHeader = document.querySelector('.hero-header');
+        this.newsBtn = document.getElementById('btn-news');
         this.worldviewBtn = document.getElementById('btn-worldview');
         this.charactersBtn = document.getElementById('btn-characters');
         
+        this.newsContent = document.getElementById('content-news');
         this.worldviewContent = document.getElementById('content-worldview');
         this.charactersContent = document.getElementById('content-characters');
         this.aegisContent = document.getElementById('content-aegis');
         this.gehennaContent = document.getElementById('content-gehenna');
 
         this.allContent = [
+            this.newsContent,
             this.worldviewContent, 
             this.charactersContent, 
             this.aegisContent, 
@@ -30,6 +33,11 @@ class ProjectGenesisApp {
 
     initEventListeners() {
         // Event Listeners for main tabs
+        this.newsBtn.addEventListener('click', () => {
+            this.showContent(this.newsContent);
+            this.setActiveTab(this.newsBtn);
+        });
+
         this.worldviewBtn.addEventListener('click', () => {
             this.showContent(this.worldviewContent);
             this.setActiveTab(this.worldviewBtn);
@@ -63,7 +71,7 @@ class ProjectGenesisApp {
         }
         
         // Show/hide hero header
-        if (contentToShow === this.worldviewContent || contentToShow === this.charactersContent) {
+        if (contentToShow === this.newsContent || contentToShow === this.worldviewContent || contentToShow === this.charactersContent) {
             this.heroHeader.classList.remove('hidden');
         } else {
             this.heroHeader.classList.add('hidden');
@@ -72,6 +80,7 @@ class ProjectGenesisApp {
 
     setActiveTab(activeBtn) {
         // Remove active class from all buttons
+        this.newsBtn.classList.remove('active');
         this.worldviewBtn.classList.remove('active');
         this.charactersBtn.classList.remove('active');
         
@@ -80,9 +89,12 @@ class ProjectGenesisApp {
     }
 
     initializeApp() {
-        // Initial state - show worldview content
-        this.showContent(this.worldviewContent);
-        this.setActiveTab(this.worldviewBtn);
+        // Initial state - show news content
+        this.showContent(this.newsContent);
+        this.setActiveTab(this.newsBtn);
+        
+        // Load news data
+        this.loadNews();
     }
 
     initImageModal() {
@@ -139,6 +151,59 @@ class ProjectGenesisApp {
         
         // Restore body scroll
         document.body.style.overflow = 'auto';
+    }
+
+    // ニュース読み込み機能
+    async loadNews() {
+        const loadingElement = document.getElementById('news-loading');
+        const listElement = document.getElementById('news-list');
+        const errorElement = document.getElementById('news-error');
+
+        try {
+            // JSONファイルからニュースデータを読み込み
+            const response = await fetch('data/news.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            // ニュースアイテムを生成
+            this.renderNews(data.news);
+            
+            // ローディングを隠してニュースリストを表示
+            loadingElement.classList.add('hidden');
+            listElement.classList.remove('hidden');
+            
+        } catch (error) {
+            console.error('ニュースの読み込みに失敗しました:', error);
+            
+            // エラー表示
+            loadingElement.classList.add('hidden');
+            errorElement.classList.remove('hidden');
+        }
+    }
+
+    renderNews(newsItems) {
+        const listElement = document.getElementById('news-list');
+        listElement.innerHTML = '';
+
+        newsItems.forEach(item => {
+            const newsItemHTML = `
+                <article class="news-item" data-news-id="${item.id}">
+                    <img src="${item.image}" alt="${item.title}" class="news-image" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/120x120/1f2937/9ca3af?text=NO+IMAGE';">
+                    <div class="news-content">
+                        <div class="news-header">
+                            <h3 class="news-title">${item.title}</h3>
+                            <time class="news-date">${item.date}</time>
+                        </div>
+                        <p class="news-description">${item.description}</p>
+                    </div>
+                </article>
+            `;
+            listElement.insertAdjacentHTML('beforeend', newsItemHTML);
+        });
     }
 }
 

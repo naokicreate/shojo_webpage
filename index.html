@@ -22,7 +22,8 @@
             
             <div class="nav-container">
                 <nav class="modern-nav">
-                    <button id="btn-worldview" class="modern-tab active">WORLDVIEW</button>
+                    <button id="btn-news" class="modern-tab active">NEWS</button>
+                    <button id="btn-worldview" class="modern-tab">WORLDVIEW</button>
                     <button id="btn-characters" class="modern-tab">CHARACTERS</button>
                 </nav>
             </div>
@@ -33,6 +34,26 @@
 
         <!-- コンテンツエリア -->
         <main>
+            <!-- ニュースページ -->
+            <div id="content-news">
+                <header class="text-center mb-12">
+                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-white tracking-widest">NEWS</h2>
+                    <p class="text-gray-400 mt-2 text-lg">最新情報</p>
+                </header>
+                
+                <div class="news-container">
+                    <div id="news-loading" class="news-loading">
+                        ニュースを読み込み中...
+                    </div>
+                    <div id="news-list" class="hidden">
+                        <!-- ニュースアイテムがJavaScriptで動的に挿入されます -->
+                    </div>
+                    <div id="news-error" class="news-error hidden">
+                        ニュースの読み込みに失敗しました。
+                    </div>
+                </div>
+            </div>
+
             <!-- 世界観メインページ -->
             <div id="content-worldview">
                 <header class="text-center mb-12">
