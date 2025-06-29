@@ -2268,6 +2268,12 @@ main {
     }
 }
 
+/* === CHARACTER IMAGE SHADOW OVERRIDE === */
+.character-portrait,
+img.character-portrait {
+    box-shadow: none !important;
+}
+
 /* === GALLERY IMAGE WIDTH OVERRIDE === */
 .gallery-item-image,
 .gallery-item-image-container .gallery-item-image,
