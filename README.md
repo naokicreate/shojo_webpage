@@ -260,6 +260,12 @@ gitgraph
 3. Branch を "main" に設定
 4. フォルダーを "/ (root)" に設定
 
+**注意事項:**
+
+- GitHub Pagesは静的サイトホスティングのため、サーバーサイドヘッダー設定はできません
+- セキュリティヘッダー（X-Content-Type-Options等）はGitHub側で自動設定されます
+- 初回デプロイ後、反映に数分かかる場合があります
+
 ### **ローカル開発環境**
 
 ```bash
@@ -281,8 +287,8 @@ http://localhost:8000
 - **JavaScript**: Vanilla ES6+ (フレームワークなし)
 - **データ形式**: JSON
 - **ブラウザサポート**: Chrome, Firefox, Safari, Edge
-- **セキュリティ**: X-Content-Type-Options, X-Frame-Options対応
-- **パフォーマンス**: 画像lazy loading, GPU加速対応
+- **デプロイ**: GitHub Pages対応（静的サイト）
+- **パフォーマンス**: 画像lazy loading, ハードウェア加速対応
 
 ## 📋 **チェックリスト**
 
@@ -294,7 +300,7 @@ http://localhost:8000
 - [ ] ギャラリーモーダルが正常に動作する
 - [ ] モバイル表示が正しい
 - [ ] ブラウザ互換性チェック完了
-- [ ] セキュリティヘッダーが適切に設定されている
+- [ ] GitHub Pages環境での動作確認完了
 - [ ] 画像にlazy loadingが適用されている
 - [ ] パフォーマンス最適化が完了している
 
