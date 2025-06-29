@@ -97,6 +97,9 @@ class ProjectGenesisApp {
         
         // Load news data
         this.loadNews();
+        
+        // Load characters data
+        this.loadCharacters();
     }
 
     initImageModal() {
@@ -634,6 +637,105 @@ class ProjectGenesisApp {
             loading.textContent = 'ギャラリーデータの読み込みに失敗しました。';
             loading.style.color = '#ef4444';
         }
+    }
+
+    // === CHARACTER SYSTEM ===
+    async loadCharacters() {
+        try {
+            const response = await fetch('data/characters.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.renderCharacters(data.characters);
+            
+        } catch (error) {
+            console.error('キャラクターの読み込みに失敗しました:', error);
+        }
+    }
+
+    renderCharacters(characters) {
+        const charactersContainer = document.querySelector('#content-characters');
+        
+        // ヘッダー部分は保持
+        const headerHTML = `
+            <header class="text-center mb-12">
+                <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-white tracking-widest">CHARACTERS</h2>
+                <p class="text-gray-400 mt-2 text-lg">登場人物</p>
+            </header>
+        `;
+        
+        // キャラクターカードを生成
+        const charactersHTML = characters.map(character => this.createCharacterCard(character)).join('');
+        
+        charactersContainer.innerHTML = headerHTML + charactersHTML;
+    }
+
+    createCharacterCard(character) {
+        const isReverse = character.layout === 'reverse';
+        const themeColor = character.themeColor || 'cyan';
+        
+        // 詳細情報のHTML生成
+        const detailsHTML = Object.entries(character.details).map(([key, value]) => `
+            <div class="bg-gray-800/60 rounded-lg p-4 border border-${themeColor}-500/20">
+                <h5 class="text-${themeColor}-300 font-bold mb-2 text-lg">${this.getDetailLabel(key)}</h5>
+                <p class="text-gray-300 text-base">${value}</p>
+            </div>
+        `).join('');
+
+        const imageSection = `
+            <div class="character-image-section ${isReverse ? 'reverse' : ''} bg-gradient-to-b from-${themeColor}-900/20 to-${themeColor}-800/10 flex items-center justify-center p-6 md:p-8">
+                <div class="w-full max-w-sm mx-auto">
+                    <img src="${character.image}" alt="${character.name}の立ち絵" class="character-portrait w-full h-auto object-contain rounded-lg" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${character.fallbackImage}';">
+                </div>
+            </div>
+        `;
+
+        const infoSection = `
+            <div class="character-info-section p-6 md:p-8 lg:p-10 flex flex-col justify-center character-bg-gradient">
+                <div class="space-y-8">
+                    <div class="text-center sm:text-left">
+                        <h3 class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold text-${themeColor}-300 text-shadow-${themeColor} mb-3">${character.name}</h3>
+                        <p class="font-orbitron text-xl md:text-2xl lg:text-3xl text-${themeColor}-400 mb-8">${character.nameEn}</p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-${themeColor}-400 pl-6">
+                            <h4 class="text-xl font-bold text-white mb-3">プロフィール</h4>
+                            <p class="text-gray-300 leading-relaxed text-lg">
+                                ${character.description}
+                            </p>
+                        </div>
+                        
+                        <div class="character-info-grid mt-8">
+                            ${detailsHTML}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        return `
+            <div class="mb-16">
+                <div class="card rounded-lg overflow-hidden border border-${themeColor}-700/50 border-glow-${themeColor} max-w-6xl mx-auto">
+                    <div class="character-force-horizontal ${isReverse ? 'reverse' : ''}">
+                        ${isReverse ? infoSection + imageSection : imageSection + infoSection}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    getDetailLabel(key) {
+        const labels = {
+            'age': '年齢',
+            'affiliation': '所属',
+            'characteristic': '特徴',
+            'ability': '能力',
+            'relationship': '関係'
+        };
+        return labels[key] || key;
     }
 }
 

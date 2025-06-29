@@ -2268,9 +2268,8 @@ main {
     }
 }
 
-/* === CHARACTER IMAGE SHADOW OVERRIDE === */
-.character-portrait,
-img.character-portrait {
+/* === CHARACTER PORTRAIT SHADOW OVERRIDE === */
+.character-portrait {
     box-shadow: none !important;
 }
 
