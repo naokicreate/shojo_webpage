@@ -240,68 +240,259 @@
 
             <!-- ロジック派：AEGIS 詳細ページ -->
             <div id="content-aegis" class="hidden">
-                <button class="back-to-worldview-btn text-cyan-300 font-bold mb-8 inline-flex items-center gap-2 hover:underline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>
-                    WORLDVIEWに戻る
-                </button>
+                <div class="aegis-detail-page">
+                    <button class="back-to-worldview-btn text-cyan-300 font-bold mb-8 inline-flex items-center gap-2 hover:underline transition-all duration-300 hover:translate-x-[-4px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        WORLDVIEWに戻る
+                    </button>
 
-                <header class="text-center mb-12 border-b-2 border-cyan-500/30 pb-8">
-                    <!-- ヘッダー画像 -->
-                    <div class="mb-8">
-                        <img src="img/AEGIS/worldview_001.png" alt="AEGIS都市景観" class="header-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/1200x200/111827/06b6d4?text=AEGIS+HEADER';">
+                    <!-- ヒーローセクション -->
+                    <div class="faction-hero-section aegis-hero">
+                        <div class="faction-hero-content">
+                            <div class="faction-logo-container">
+                                <div class="faction-logo aegis-logo">
+                                    <svg width="60" height="60" viewBox="0 0 100 100" class="logo-icon">
+                                        <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="none" stroke="currentColor" stroke-width="3"/>
+                                        <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" stroke-width="2"/>
+                                        <line x1="50" y1="35" x2="50" y2="65" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h1 class="faction-title aegis-title">AEGIS</h1>
+                            <p class="faction-subtitle">Logic & Order Division</p>
+                            <div class="faction-description-box">
+                                <p class="faction-hero-description">
+                                    論理と秩序を重んじる合理主義集団。科学技術の発展と効率的な社会システムの構築を目指し、
+                                    AIによる完璧な管理社会の実現を追求している先進的組織。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faction-hero-bg-pattern"></div>
                     </div>
-                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-cyan-300 text-shadow-cyan tracking-widest">AEGIS</h2>
-                    <p class="text-gray-400 mt-2 text-lg">ロジック派</p>
-                </header>
 
-                <div class="card p-6 md:p-8 rounded-lg mb-12">
-                    <h3 class="font-orbitron text-2xl text-white mb-4">AEGIS MAP</h3>
-                    <img src="https://placehold.co/1200x500/111827/06b6d4?text=AEGIS+AREA+MAP" alt="AEGISのマップ" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                </div>
+                    <!-- ステータスカード -->
+                    <div class="faction-status-grid mb-16">
+                        <div class="status-card aegis-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">管理効率</h3>
+                            <p class="status-value">99.7%</p>
+                            <p class="status-description">AI統制システム稼働率</p>
+                        </div>
+                        <div class="status-card aegis-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">技術レベル</h3>
+                            <p class="status-value">SSS</p>
+                            <p class="status-description">最高クラス技術力</p>
+                        </div>
+                        <div class="status-card aegis-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">人口</h3>
+                            <p class="status-value">2.4M</p>
+                            <p class="status-description">管理下人口数</p>
+                        </div>
+                        <div class="status-card aegis-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">稼働時間</h3>
+                            <p class="status-value">24/7</p>
+                            <p class="status-description">無停止システム運用</p>
+                        </div>
+                    </div>
 
-                <div class="card p-6 md:p-8 rounded-lg">
-                    <h3 class="font-orbitron text-2xl text-white mb-4">設定資料 GALLERY</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <img src="img/AEGIS/worldview_001.png" alt="AEGIS設定資料1" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="img/AEGIS/worldview_002.png" alt="AEGIS設定資料2" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+3" alt="AEGIS設定資料3" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="https://placehold.co/400x400/111827/06b6d4?text=Setting+4" alt="AEGIS設定資料4" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                    <!-- マップセクション -->
+                    <div class="faction-map-section mb-16">
+                        <div class="section-header">
+                            <h2 class="section-title aegis-accent">AEGIS Territory Map</h2>
+                            <p class="section-subtitle">管轄領域マップ</p>
+                        </div>
+                        <div class="map-container">
+                            <img src="https://placehold.co/1200x500/111827/06b6d4?text=AEGIS+TERRITORY+MAP" alt="AEGISの領域マップ" class="map-image" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                            <div class="map-overlay">
+                                <div class="map-info-panel">
+                                    <h4 class="map-info-title">Territory Information</h4>
+                                    <ul class="map-info-list">
+                                        <li>中央管制区域: 完全AI統制</li>
+                                        <li>居住区画: 効率化住環境</li>
+                                        <li>研究施設: 最先端技術開発</li>
+                                        <li>工業地帯: 自動化生産ライン</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ギャラリーセクション -->
+                    <div class="faction-gallery-section">
+                        <div class="section-header">
+                            <h2 class="section-title aegis-accent">Visual Archive</h2>
+                            <p class="section-subtitle">設定資料ギャラリー</p>
+                        </div>
+                        <div id="aegis-gallery-container" class="gallery-grid">
+                            <!-- ギャラリーアイテムがJavaScriptで動的に挿入されます -->
+                        </div>
+                        <div id="aegis-gallery-loading" class="gallery-loading">
+                            設定資料を読み込み中...
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- 感情派：GEHENNA 詳細ページ -->
             <div id="content-gehenna" class="hidden">
-                <button class="back-to-worldview-btn text-pink-400 font-bold mb-8 inline-flex items-center gap-2 hover:underline">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>
-                    WORLDVIEWに戻る
-                </button>
+                <div class="gehenna-detail-page">
+                    <button class="back-to-worldview-btn text-pink-400 font-bold mb-8 inline-flex items-center gap-2 hover:underline transition-all duration-300 hover:translate-x-[-4px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        WORLDVIEWに戻る
+                    </button>
 
-                <header class="text-center mb-12 border-b-2 border-pink-500/30 pb-8">
-                    <!-- ヘッダー画像 -->
-                    <div class="mb-8">
-                        <img src="img/AEGIS/worldview_002.png" alt="GEHENNA都市景観" class="header-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/1200x200/1f2937/9ca3af?text=GEHENNA+HEADER';">
+                    <!-- ヒーローセクション -->
+                    <div class="faction-hero-section gehenna-hero">
+                        <div class="faction-hero-content">
+                            <div class="faction-logo-container">
+                                <div class="faction-logo gehenna-logo">
+                                    <svg width="60" height="60" viewBox="0 0 100 100" class="logo-icon">
+                                        <path d="M50 10 L30 30 L10 50 L30 70 L50 90 L70 70 L90 50 L70 30 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                                        <circle cx="50" cy="50" r="8" fill="currentColor"/>
+                                        <path d="M35 35 Q50 25 65 35" fill="none" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M35 65 Q50 75 65 65" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h1 class="faction-title gehenna-title">GEHENNA</h1>
+                            <p class="faction-subtitle">Emotion & Freedom Alliance</p>
+                            <div class="faction-description-box">
+                                <p class="faction-hero-description">
+                                    人間の感情と自由を尊重する反体制集団。個性と多様性を重んじ、
+                                    システムに縛られない生き方を求める情熱的で創造的な組織。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faction-hero-bg-pattern"></div>
                     </div>
-                    <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-pink-400 text-shadow-pink tracking-widest">GEHENNA</h2>
-                    <p class="text-gray-400 mt-2 text-lg">感情派</p>
-                </header>
 
-                <div class="card p-6 md:p-8 rounded-lg mb-12">
-                    <h3 class="font-orbitron text-2xl text-white mb-4">GEHENNA MAP</h3>
-                    <img src="https://placehold.co/1200x500/111827/ec4899?text=GEHENNA+AREA+MAP" alt="GEHENNAのマップ" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                    <!-- ステータスカード -->
+                    <div class="faction-status-grid mb-16">
+                        <div class="status-card gehenna-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">感情指数</h3>
+                            <p class="status-value">MAX</p>
+                            <p class="status-description">自由表現レベル</p>
+                        </div>
+                        <div class="status-card gehenna-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">創造性</h3>
+                            <p class="status-value">∞</p>
+                            <p class="status-description">無限の可能性</p>
+                        </div>
+                        <div class="status-card gehenna-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">人口</h3>
+                            <p class="status-value">1.8M</p>
+                            <p class="status-description">自由民人口数</p>
+                        </div>
+                        <div class="status-card gehenna-status">
+                            <div class="status-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="status-title">活動形態</h3>
+                            <p class="status-value">Free</p>
+                            <p class="status-description">制約なし運営</p>
+                        </div>
+                    </div>
+
+                    <!-- マップセクション -->
+                    <div class="faction-map-section mb-16">
+                        <div class="section-header">
+                            <h2 class="section-title gehenna-accent">GEHENNA Territory Map</h2>
+                            <p class="section-subtitle">自由領域マップ</p>
+                        </div>
+                        <div class="map-container">
+                            <img src="https://placehold.co/1200x500/111827/ec4899?text=GEHENNA+TERRITORY+MAP" alt="GEHENNAの領域マップ" class="map-image" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                            <div class="map-overlay">
+                                <div class="map-info-panel">
+                                    <h4 class="map-info-title">Territory Information</h4>
+                                    <ul class="map-info-list">
+                                        <li>地下自由都市: 創造的コミュニティ</li>
+                                        <li>芸術地区: 表現の聖地</li>
+                                        <li>自由市場: 独自経済圏</li>
+                                        <li>隠れ家: レジスタンス拠点</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ギャラリーセクション -->
+                    <div class="faction-gallery-section">
+                        <div class="section-header">
+                            <h2 class="section-title gehenna-accent">Visual Archive</h2>
+                            <p class="section-subtitle">設定資料ギャラリー</p>
+                        </div>
+                        <div id="gehenna-gallery-container" class="gallery-grid">
+                            <!-- ギャラリーアイテムがJavaScriptで動的に挿入されます -->
+                        </div>
+                        <div id="gehenna-gallery-loading" class="gallery-loading">
+                            設定資料を読み込み中...
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="card p-6 md:p-8 rounded-lg">
-                    <h3 class="font-orbitron text-2xl text-white mb-4">設定資料 GALLERY</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+1" alt="GEHENNA設定資料1" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+2" alt="GEHENNA設定資料2" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+3" alt="GEHENNA設定資料3" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
-                        <img src="https://placehold.co/400x400/111827/ec4899?text=Setting+4" alt="GEHENNA設定資料4" class="gallery-image rounded-md w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+            <!-- ギャラリーモーダル -->
+            <div id="gallery-modal" class="gallery-modal hidden">
+                <div class="gallery-modal-overlay"></div>
+                <div class="gallery-modal-content">
+                    <button class="gallery-modal-close" title="閉じる" aria-label="モーダルを閉じる">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.3 5.71c-.39-.39-1.02-.39-1.41 0L12 10.59 7.11 5.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                        </svg>
+                    </button>
+                    <div class="gallery-modal-body">
+                        <div class="gallery-modal-image">
+                            <img id="modal-image" src="" alt="">
+                        </div>
+                        <div class="gallery-modal-info">
+                            <h3 id="modal-title" class="modal-title"></h3>
+                            <p id="modal-description" class="modal-description"></p>
+                            <div class="modal-category">
+                                <span class="category-label">Category:</span>
+                                <span id="modal-category" class="category-value"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

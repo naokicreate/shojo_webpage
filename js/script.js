@@ -8,6 +8,7 @@ class ProjectGenesisApp {
         this.initializeApp();
         this.initImageModal();
         this.initHeaderSlideshow();
+        this.initGallerySystem(); // ギャラリーシステムの初期化
     }
 
     initElements() {
@@ -408,6 +409,230 @@ class ProjectGenesisApp {
             this.stopSlideshow();
         } else if (this.headerImagesData && this.headerImagesData.length > 1) {
             this.startSlideshow();
+        }
+    }
+
+    // ギャラリー機能の初期化
+    initGallerySystem() {
+        this.initAegisGallery();
+        this.initGehennaGallery();
+        this.initGalleryModal();
+    }
+
+    // AEGISギャラリーの初期化
+    async initAegisGallery() {
+        try {
+            const response = await fetch('data/aegis_gallery.json');
+            const data = await response.json();
+            this.renderGallery('aegis-gallery-container', 'aegis-gallery-loading', data.gallery, 'aegis');
+        } catch (error) {
+            console.error('AEGISギャラリーデータの読み込みに失敗:', error);
+            this.showGalleryError('aegis-gallery-container', 'aegis-gallery-loading');
+        }
+    }
+
+    // GEHENNAギャラリーの初期化
+    async initGehennaGallery() {
+        try {
+            const response = await fetch('data/gehenna_gallery.json');
+            const data = await response.json();
+            this.renderGallery('gehenna-gallery-container', 'gehenna-gallery-loading', data.gallery, 'gehenna');
+        } catch (error) {
+            console.error('GEHENNAギャラリーデータの読み込みに失敗:', error);
+            this.showGalleryError('gehenna-gallery-container', 'gehenna-gallery-loading');
+        }
+    }
+
+    // ギャラリーのレンダリング
+    renderGallery(containerId, loadingId, galleryData, faction) {
+        const container = document.getElementById(containerId);
+        const loading = document.getElementById(loadingId);
+        
+        if (!container) return;
+
+        // ローディング表示を非表示
+        if (loading) {
+            loading.style.display = 'none';
+        }
+
+        // ギャラリーアイテムを生成
+        container.innerHTML = '';
+        galleryData.forEach(item => {
+            const galleryItem = this.createGalleryItem(item, faction);
+            container.appendChild(galleryItem);
+        });
+    }
+
+    // ギャラリーアイテムの作成
+    createGalleryItem(item, faction) {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.dataset.galleryId = item.id;
+        
+        div.innerHTML = `
+            <div class="gallery-item-image">
+                <img src="${item.imagePath}" alt="${item.title}" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                <div class="gallery-item-overlay"></div>
+            </div>
+            <div class="gallery-item-content">
+                <h4 class="gallery-item-title">${item.title}</h4>
+                <p class="gallery-item-description">${item.description}</p>
+                <span class="gallery-item-category">${this.getCategoryLabel(item.category)}</span>
+            </div>
+        `;
+
+        // クリックイベントの追加（重複を防ぐ）
+        div.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.openGalleryModal(item);
+        }, { once: false });
+
+        return div;
+    }
+
+    // カテゴリラベルの取得
+    getCategoryLabel(category) {
+        const categoryLabels = {
+            'cityscape': '都市景観',
+            'facility': '施設',
+            'system': 'システム',
+            'residential': '居住区',
+            'cultural': '文化',
+            'commerce': '商業',
+            'military': '軍事'
+        };
+        return categoryLabels[category] || category;
+    }
+
+    // ギャラリーモーダルの初期化
+    initGalleryModal() {
+        // モーダルが既に初期化されている場合は再初期化しない
+        if (this.galleryModalInitialized) {
+            return;
+        }
+
+        const modal = document.getElementById('gallery-modal');
+        if (!modal) return;
+
+        const closeBtn = modal.querySelector('.gallery-modal-close');
+        const overlay = modal.querySelector('.gallery-modal-overlay');
+
+        // クローズボタンイベント
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.closeGalleryModal();
+            });
+        }
+
+        // オーバーレイクリックイベント
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.closeGalleryModal();
+            });
+        }
+
+        // モーダル自体のクリックでは閉じない（コンテンツエリアのクリック）
+        const modalContent = modal.querySelector('.gallery-modal-content');
+        if (modalContent) {
+            modalContent.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // ESCキーでモーダルを閉じる
+        this.galleryModalEscHandler = (e) => {
+            if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                this.closeGalleryModal();
+            }
+        };
+        document.addEventListener('keydown', this.galleryModalEscHandler);
+
+        this.galleryModalInitialized = true;
+    }
+
+    // ギャラリーモーダルを開く
+    openGalleryModal(item) {
+        const modal = document.getElementById('gallery-modal');
+        if (!modal) {
+            console.error('Gallery modal not found');
+            return;
+        }
+
+        // モーダルが既に開いている場合は閉じる
+        if (!modal.classList.contains('hidden')) {
+            this.closeGalleryModal();
+            return;
+        }
+
+        // モーダルの内容を設定
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalCategory = document.getElementById('modal-category');
+
+        if (modalImage) {
+            modalImage.src = item.imagePath;
+            modalImage.alt = item.title;
+            modalImage.onerror = function() {
+                this.src = 'https://placehold.co/800x600/1f2937/9ca3af?text=IMAGE+NOT+FOUND';
+            };
+        }
+        if (modalTitle) {
+            modalTitle.textContent = item.title;
+        }
+        if (modalDescription) {
+            modalDescription.textContent = item.description;
+        }
+        if (modalCategory) {
+            modalCategory.textContent = this.getCategoryLabel(item.category);
+        }
+
+        // モーダルを表示
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // フェードインアニメーション
+        requestAnimationFrame(() => {
+            modal.style.opacity = '1';
+        });
+
+        console.log('Gallery modal opened for:', item.title);
+    }
+
+    // ギャラリーモーダルを閉じる
+    closeGalleryModal() {
+        const modal = document.getElementById('gallery-modal');
+        if (!modal || modal.classList.contains('hidden')) {
+            return;
+        }
+
+        console.log('Closing gallery modal');
+
+        // フェードアウトアニメーション
+        modal.style.opacity = '0';
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            modal.style.opacity = '';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    // ギャラリーエラー表示
+    showGalleryError(containerId, loadingId) {
+        const container = document.getElementById(containerId);
+        const loading = document.getElementById(loadingId);
+        
+        if (loading) {
+            loading.textContent = 'ギャラリーデータの読み込みに失敗しました。';
+            loading.style.color = '#ef4444';
         }
     }
 }

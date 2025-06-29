@@ -1,0 +1,32 @@
+{
+  "gallery": [
+    {
+      "id": "aegis_001",
+      "imagePath": "img/AEGIS/worldview_001.png",
+      "title": "AEGIS都市中枢部",
+      "description": "高度に発達したAI管理システムが統治するAEGISの中心部。完璧な秩序と効率性を追求した都市設計が特徴的で、すべての建造物が機能美を重視した設計となっている。住民の行動は全てデータ化され、最適化されたライフスタイルが提供されている。",
+      "category": "cityscape"
+    },
+    {
+      "id": "aegis_002", 
+      "imagePath": "img/AEGIS/worldview_002.png",
+      "title": "AEGIS研究施設",
+      "description": "最先端の科学技術研究が行われるAEGISの頭脳部分。バイオショック現象の解析や、人類の進化に関する研究が日夜続けられている。厳重なセキュリティに守られ、選ばれたエリート研究者のみがアクセスを許可されている。",
+      "category": "facility"
+    },
+    {
+      "id": "aegis_003",
+      "imagePath": "https://placehold.co/800x600/111827/06b6d4?text=AEGIS+CONTROL+CENTER",
+      "title": "中央制御センター",
+      "description": "AEGIS全体を統括する中央制御システム。巨大なAIコンピューターが都市全体の運営を管理し、リアルタイムで最適化を行っている。人間の管理者は最小限に抑えられ、効率的な社会運営が実現されている。",
+      "category": "system"
+    },
+    {
+      "id": "aegis_004",
+      "imagePath": "https://placehold.co/800x600/111827/06b6d4?text=AEGIS+LIVING+QUARTERS",
+      "title": "居住区画",
+      "description": "AEGIS市民が生活する高度に管理された居住エリア。各住居は住民の生活パターンと効率性を考慮して設計されており、無駄のない合理的な生活空間が提供されている。プライバシーよりも効率性が重視された設計となっている。",
+      "category": "residential"
+    }
+  ]
+}

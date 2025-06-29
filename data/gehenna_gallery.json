@@ -1,0 +1,32 @@
+{
+  "gallery": [
+    {
+      "id": "gehenna_001",
+      "imagePath": "https://placehold.co/800x600/111827/ec4899?text=GEHENNA+UNDERGROUND",
+      "title": "地下自由都市",
+      "description": "GEHENNAの中心部である地下都市。混沌とした美しさを持つ自由な空間で、個性豊かな建造物が立ち並ぶ。規則に縛られない創造性が爆発し、アートとテクノロジーが融合した独特の文化が花開いている。",
+      "category": "cityscape"
+    },
+    {
+      "id": "gehenna_002",
+      "imagePath": "https://placehold.co/800x600/111827/ec4899?text=GEHENNA+ART+DISTRICT",
+      "title": "芸術地区",
+      "description": "感情表現と芸術創作の聖地。様々なアーティストが集まり、自由な表現活動を行っている。壁面には色とりどりのグラフィティアートが描かれ、音楽や詩の朗読が日夜響いている創造性あふれる地域。",
+      "category": "cultural"
+    },
+    {
+      "id": "gehenna_003",
+      "imagePath": "https://placehold.co/800x600/111827/ec4899?text=GEHENNA+MARKETPLACE",
+      "title": "自由市場",
+      "description": "あらゆる物品と情報が交換される混沌の市場。正規品から違法品まで、ありとあらゆるものが取引されている。ここでは金銭よりも信頼関係や個人のスキルが重視され、独特の経済システムが形成されている。",
+      "category": "commerce"
+    },
+    {
+      "id": "gehenna_004",
+      "imagePath": "https://placehold.co/800x600/111827/ec4899?text=GEHENNA+RESISTANCE+BASE",
+      "title": "レジスタンス拠点",
+      "description": "AEGIS体制に対抗するレジスタンス活動の中枢。秘密裏に組織された反体制派が集まり、自由を求めて戦略を練っている。最新技術と古い知恵を組み合わせた独自の戦術が開発されている隠れ家。",
+      "category": "military"
+    }
+  ]
+}
