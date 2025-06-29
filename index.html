@@ -70,39 +70,59 @@
                 </header>
 
                 <section class="mb-16">
-                    <div class="card p-6 md:p-8 rounded-lg max-w-4xl mx-auto">
-                        <h3 class="font-orbitron text-2xl md:text-3xl font-bold text-center text-white mb-6">The Great Cataclysm & Bio-Shock</h3>
-                        <p class="text-base md:text-lg leading-relaxed text-gray-300">
-                            未曾有の大災害――後に「神罰の刻（ラグナロク・フォール）」と呼ばれる巨大隕石の落下により、地上の生態系は崩壊。人類は汚染された大地を捨て、地下シェルターでの生活を余儀なくされた。<br><br>
-                            しかし、脅威は災害そのものに留まらなかった。隕石に含まれる未知の成分は、生命の設計図を書き換える恐怖の現象<span class="font-bold text-red-400">「バイオ・ショック」</span>を誘発。これに感染した生物は、生命活動を停止し無機物と化す<span class="font-bold text-blue-300">「異質化」</span>、あるいは身体の一部が異常発達・変質する<span class="font-bold text-purple-300">「異体化」</span>という二つの悲劇的な末路を辿る。異体化した生物は自我を失い、破壊衝動の化身として世界を彷徨うことになる。
-                        </p>
+                    <div class="worldview-hero">
+                        <div class="worldview-hero-content">
+                            <h3 class="font-orbitron text-2xl md:text-3xl font-bold text-center text-white mb-6">The Great Cataclysm & Bio-Shock</h3>
+                            <p class="worldview-description">
+                                未曾有の大災害――後に「神罰の刻（ラグナロク・フォール）」と呼ばれる巨大隕石の落下により、地上の生態系は崩壊。人類は汚染された大地を捨て、地下シェルターでの生活を余儀なくされた。<br><br>
+                                しかし、脅威は災害そのものに留まらなかった。隕石に含まれる未知の成分は、生命の設計図を書き換える恐怖の現象<span class="highlight-term highlight-bio-shock">「バイオ・ショック」</span>を誘発。これに感染した生物は、生命活動を停止し無機物と化す<span class="highlight-term highlight-mineralization">「異質化」</span>、あるいは身体の一部が異常発達・変質する<span class="highlight-term highlight-aberration">「異体化」</span>という二つの悲劇的な末路を辿る。異体化した生物は自我を失い、破壊衝動の化身として世界を彷徨うことになる。
+                            </p>
+                        </div>
                     </div>
                 </section>
 
                 <section class="mb-16">
-                    <div class="card rounded-lg overflow-hidden max-w-5xl mx-auto">
-                         <h3 class="font-orbitron text-2xl md:text-3xl font-bold text-center text-white pt-6">WORLD MAP</h3>
-                         <div class="p-4"><img src="https://placehold.co/1200x600/111827/4b5563?text=WORLD+MAP" alt="ワールドマップの画像" class="w-full h-auto object-cover rounded-md" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/1f2937/9ca3af?text=IMAGE+NOT+FOUND';"></div>
+                    <div class="world-map-section">
+                         <h3 class="world-map-title font-orbitron">WORLD MAP</h3>
+                         <div class="p-4">
+                             <img src="https://placehold.co/1200x600/111827/4b5563?text=WORLD+MAP" alt="ワールドマップの画像" class="world-map-image" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/1f2937/9ca3af?text=IMAGE+NOT+FOUND';">
+                         </div>
                     </div>
                 </section>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16">
-                    <!-- ロジック派カード -->
-                    <div class="card flex flex-col rounded-lg overflow-hidden border-t-4 border-cyan-400 border-glow-cyan">
-                        <img src="../img/AEGIS/worldview_001.png" alt="ロジック派の都市景観" class="w-full h-48 object-cover">
-                        <div class="p-6 md:p-8 flex-grow flex flex-col">
-                            <h3 class="font-orbitron text-3xl font-bold text-cyan-300 text-shadow-cyan mb-4">ロジック派：AEGIS</h3>
-                            <p class="text-gray-300 mb-6 flex-grow">地上に残された最後の理想郷。AIによる絶対管理社会。</p>
-                            <button class="details-button view-aegis-btn mt-auto w-full bg-cyan-500/80 text-white font-bold py-3 rounded-lg">詳しく見る</button>
+                <!-- モダンな派閥カード -->
+                <div class="faction-cards-container mb-16">
+                    <!-- AEGIS（ロジック派） -->
+                    <div class="faction-card aegis">
+                        <div class="faction-image-container">
+                            <img src="../img/AEGIS/worldview_001.png" alt="AEGIS - ロジック派の都市景観" class="faction-image">
+                            <div class="faction-image-overlay"></div>
+                        </div>
+                        <div class="faction-content">
+                            <h3 class="faction-title aegis">AEGIS</h3>
+                            <p class="faction-description">
+                                論理と秩序を重んじる合理主義集団。科学技術の発展と効率的な社会システムの構築を目指す。冷静で計算高く、感情よりも理性を優先し、データとアルゴリズムに基づいた完璧な社会の実現を追求している。地上に残された最後の理想郷、AIによる絶対管理社会を築いている。
+                            </p>
+                            <button class="faction-button aegis view-aegis-btn">
+                                AEGIS詳細情報を見る
+                            </button>
                         </div>
                     </div>
-                    <!-- 感情派カード -->
-                    <div class="card flex flex-col rounded-lg overflow-hidden border-t-4 border-pink-500 border-glow-pink">
-                        <img src="https://placehold.co/600x300/111827/ec4899?text=GEHENNA+CITYSCAPE" alt="感情派の都市景観" class="w-full h-48 object-cover">
-                        <div class="p-6 md:p-8 flex-grow flex flex-col">
-                            <h3 class="font-orbitron text-3xl font-bold text-pink-400 text-shadow-pink mb-4">感情派：GEHENNA</h3>
-                            <p class="text-gray-300 mb-6 flex-grow">地下に広がる混沌の自由都市。欲望と芸術が渦巻く。</p>
-                            <button class="details-button view-gehenna-btn mt-auto w-full bg-pink-500/80 text-white font-bold py-3 rounded-lg">詳しく見る</button>
+                    
+                    <!-- GEHENNA（感情派） -->
+                    <div class="faction-card gehenna">
+                        <div class="faction-image-container">
+                            <img src="https://placehold.co/600x300/111827/ec4899?text=GEHENNA+CITYSCAPE" alt="GEHENNA - 感情派の都市景観" class="faction-image">
+                            <div class="faction-image-overlay"></div>
+                        </div>
+                        <div class="faction-content">
+                            <h3 class="faction-title gehenna">GEHENNA</h3>
+                            <p class="faction-description">
+                                人間の感情と自由を尊重する反体制集団。個性と多様性を重んじ、システムに縛られない生き方を求める。情熱的で直感的、人間らしさを大切にし、感情こそが人類の真の力だと信じている。地下に広がる混沌の自由都市、欲望と芸術が渦巻く世界。
+                            </p>
+                            <button class="faction-button gehenna view-gehenna-btn">
+                                GEHENNA詳細情報を見る
+                            </button>
                         </div>
                     </div>
                 </div>
