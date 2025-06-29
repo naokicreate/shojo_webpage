@@ -21,12 +21,14 @@ img {
 
 html, body {
     height: 100%;
+    width: 100% !important;
     font-family: 'Noto Sans JP', sans-serif;
     background-color: #111827 !important; /* bg-gray-900 */
     color: #d1d5db; /* text-gray-300 */
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    overflow-x: auto; /* 横スクロールを許可 */
 }
 
 /* === UTILITY CLASSES === */
@@ -35,28 +37,28 @@ html, body {
 }
 
 .container {
-    width: 100%;
-    max-width: 1400px; /* 1200px から 1400px に拡張 */
-    margin: 0 auto;
-    padding: 0 0.5rem; /* 1rem から 0.5rem に縮小 */
+    width: 100% !important;
+    max-width: 1400px !important; /* 1200px から 1400px に拡張 */
+    margin: 0 auto !important;
+    padding: 0 0.5rem !important; /* 1rem から 0.5rem に縮小 */
 }
 
 /* レスポンシブコンテナ */
 @media (min-width: 640px) {
     .container {
-        padding: 0 1rem;
+        padding: 0 1rem !important;
     }
 }
 
 @media (min-width: 768px) {
     .container {
-        padding: 0 1.5rem;
+        padding: 0 1.5rem !important;
     }
 }
 
 @media (min-width: 1024px) {
     .container {
-        padding: 0 2rem;
+        padding: 0 2rem !important;
     }
 }
 
@@ -134,19 +136,19 @@ html, body {
 }
 
 .max-w-6xl {
-    max-width: 80rem; /* 72rem から 80rem に拡張 */
+    max-width: 90rem !important; /* 80rem から 90rem に拡張 */
 }
 
 .p-4 {
-    padding: 1rem;
+    padding: 0.5rem !important; /* 1rem から 0.5rem に縮小 */
 }
 
 .p-6 {
-    padding: 1.5rem;
+    padding: 1rem !important; /* 1.5rem から 1rem に縮小 */
 }
 
 .p-8 {
-    padding: 2rem;
+    padding: 1.5rem !important; /* 2rem から 1.5rem に縮小 */
 }
 
 .p-10 {
@@ -2566,4 +2568,11 @@ html, body {
     .faction-gallery-section {
         padding: 2rem 1.5rem;
     }
+}
+
+/* === MAIN CONTAINER OVERRIDES === */
+/* メインコンテナの幅を強制的に拡張 */
+main {
+    width: 100% !important;
+    max-width: none !important;
 }
