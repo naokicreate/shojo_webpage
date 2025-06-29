@@ -276,13 +276,11 @@ http://localhost:8000
 ## 📱 **技術仕様**
 
 - **アーキテクチャ**: SPA (Single Page Application)
-- **スタイリング**: Custom CSS（Tailwindライクなユーティリティクラス含む）
+- **フレームワーク**: Tailwind CSS + Custom CSS
 - **フォント**: Google Fonts (Noto Sans JP, Orbitron)
 - **JavaScript**: Vanilla ES6+ (フレームワークなし)
 - **データ形式**: JSON
 - **ブラウザサポート**: Chrome, Firefox, Safari, Edge
-- **セキュリティ**: X-Content-Type-Options, X-Frame-Options対応
-- **パフォーマンス**: 画像lazy loading, GPU加速対応
 
 ## 📋 **チェックリスト**
 
@@ -294,9 +292,6 @@ http://localhost:8000
 - [ ] ギャラリーモーダルが正常に動作する
 - [ ] モバイル表示が正しい
 - [ ] ブラウザ互換性チェック完了
-- [ ] セキュリティヘッダーが適切に設定されている
-- [ ] 画像にlazy loadingが適用されている
-- [ ] パフォーマンス最適化が完了している
 
 ### **定期メンテナンス**
 
