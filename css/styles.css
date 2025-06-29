@@ -1459,8 +1459,9 @@ html, body {
     }
     
     .gallery-item-image {
-        height: 250px;
-        object-fit: contain;
+        width: 100% !important;
+        height: 200px;
+        object-fit: cover;
         object-position: center;
     }
 }
@@ -1493,7 +1494,10 @@ html, body {
     }
     
     .gallery-item-image {
-        height: 200px;
+        width: 100% !important;
+        height: auto;
+        min-height: 150px;
+        max-height: 250px;
         object-fit: contain;
         object-position: center;
     }
@@ -1919,6 +1923,8 @@ main {
     transition: all 0.3s ease;
     cursor: pointer;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .gallery-item:hover {
@@ -1927,13 +1933,28 @@ main {
     border-color: rgba(56, 189, 248, 0.5);
 }
 
-.gallery-item-image {
+.gallery-item-image-container {
+    display: block;
+    background: rgba(17, 24, 39, 0.8);
+    padding: 0;
     width: 100%;
-    height: 300px;
-    object-fit: contain;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.gallery-item-image-container .gallery-item-image {
+    background: none;
+    border-radius: 0;
+}
+
+.gallery-item-image {
+    width: 100% !important;
+    height: 250px;
+    object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
     background: rgba(17, 24, 39, 0.8);
+    display: block;
 }
 
 .gallery-item:hover .gallery-item-image {
@@ -2245,4 +2266,17 @@ main {
     .gallery-item-content {
         padding: 1rem;
     }
+}
+
+/* === GALLERY IMAGE WIDTH OVERRIDE === */
+.gallery-item-image,
+.gallery-item-image-container .gallery-item-image,
+img.gallery-item-image {
+    width: 100% !important;
+}
+
+/* === GALLERY IMAGE CONTAINER IMG OVERRIDE === */
+.gallery-item-image img,
+.gallery-item-image-container img {
+    width: 100% !important;
 }
