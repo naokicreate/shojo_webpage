@@ -8,7 +8,7 @@
       "fallbackImage": "https://placehold.co/375x1024/1f2937/9ca3af?text=CHARACTER+IMAGE",
       "faction": "AEGIS",
       "layout": "normal",
-      "description": "貢献価値テストで満点を叩き出したAEGISの至宝。<br>14歳という若さで、最も危険な任務が多いとされる公安部隊に配属されたエリート。<br>感情の起伏が極端に少なく、常にぼーっとしているように見える。",
+      "description": "貢献価値テストで満点を叩き出したAEGISの至宝。<br>14歳という若さで、最も危険な任務が多いとされる<br>公安部隊に配属されたエリート。<br>感情の起伏が極端に少なく、常にぼーっとしているように見える。",
       "details": {
         "age": "14歳",
         "affiliation": "AEGIS 公安部隊",
