@@ -36,9 +36,28 @@ html, body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px; /* 1200px から 1400px に拡張 */
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 0.5rem; /* 1rem から 0.5rem に縮小 */
+}
+
+/* レスポンシブコンテナ */
+@media (min-width: 640px) {
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
 }
 
 .mx-auto {
@@ -115,7 +134,7 @@ html, body {
 }
 
 .max-w-6xl {
-    max-width: 72rem;
+    max-width: 80rem; /* 72rem から 80rem に拡張 */
 }
 
 .p-4 {
@@ -135,8 +154,8 @@ html, body {
 }
 
 .px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem; /* 1rem から 0.5rem に縮小 */
+    padding-right: 0.5rem;
 }
 
 .py-2 {
@@ -501,7 +520,7 @@ html, body {
 /* キャラクター情報カードのスタイル */
 .character-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 最小幅を200pxから180pxに縮小 */
     gap: 1rem;
 }
 
@@ -900,7 +919,7 @@ html, body {
 
 /* ニュースページスタイル */
 .news-container {
-    max-width: 800px;
+    max-width: 1000px; /* 800px から 1000px に拡張 */
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -1142,7 +1161,7 @@ html, body {
 /* 高級感のある派閥カード */
 .faction-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -1430,7 +1449,7 @@ html, body {
 /* 高級感のある派閥カード */
 .faction-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -1718,7 +1737,7 @@ html, body {
 /* 高級感のある派閥カード */
 .faction-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -2069,7 +2088,7 @@ html, body {
 /* ステータスグリッド */
 .faction-status-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
 }
 
@@ -2291,7 +2310,7 @@ html, body {
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
