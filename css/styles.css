@@ -667,26 +667,25 @@ html, body {
 
 .image-modal-close {
     position: absolute;
-    top: -40px;
-    right: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    font-size: 24px;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(31, 41, 55, 0.8);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
     transition: all 0.3s ease;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 .image-modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 0.5);
     transform: scale(1.1);
 }
 
@@ -1458,6 +1457,46 @@ html, body {
     .faction-gallery-section {
         padding: 2rem 1.5rem;
     }
+    
+    .gallery-item-image {
+        height: 250px;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .faction-status-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-modal-body {
+        grid-template-columns: 1fr;
+        min-height: 200px;
+    }
+    
+    .gallery-modal-info {
+        padding: 2rem;
+    }
+    
+    .faction-hero-section {
+        padding: 3rem 1rem;
+    }
+    
+    .faction-map-section,
+    .faction-gallery-section {
+        padding: 2rem 1rem;
+    }
+    
+    .gallery-item-image {
+        height: 200px;
+        object-fit: contain;
+        object-position: center;
+    }
 }
 
 /* === MAIN CONTAINER OVERRIDES === */
@@ -1465,4 +1504,745 @@ html, body {
 main {
     width: 100% !important;
     max-width: none !important;
+}
+
+/* === FACTION DETAIL PAGES STYLES === */
+/* 派閥詳細ページ全体 */
+.aegis-detail-page,
+.gehenna-detail-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* 戻るボタン */
+.back-to-worldview-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.back-to-worldview-btn:hover {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateX(-4px);
+}
+
+/* 派閥ヒーローセクション */
+.faction-hero-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    border-radius: 20px;
+    padding: 4rem 3rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.faction-hero-section.aegis-hero {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(6, 182, 212, 0.1) 50%, rgba(30, 41, 59, 0.9) 100%);
+}
+
+.faction-hero-section.gehenna-hero {
+    border-color: rgba(236, 72, 153, 0.3);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(236, 72, 153, 0.1) 50%, rgba(30, 41, 59, 0.9) 100%);
+}
+
+.faction-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.faction-logo-container {
+    margin-bottom: 2rem;
+}
+
+.faction-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(31, 41, 55, 0.8);
+    border: 2px solid rgba(107, 114, 128, 0.5);
+    margin: 0 auto;
+}
+
+.faction-logo.aegis-logo {
+    border-color: rgba(6, 182, 212, 0.5);
+    color: #06b6d4;
+}
+
+.faction-logo.gehenna-logo {
+    border-color: rgba(236, 72, 153, 0.5);
+    color: #ec4899;
+}
+
+.faction-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+}
+
+.faction-title.aegis-title {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-title.gehenna-title {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+}
+
+.faction-description-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.faction-hero-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* 背景パターン */
+.faction-hero-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ステータスカードグリッド */
+.faction-status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.status-card {
+    background: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.status-card:hover::before {
+    left: 100%;
+}
+
+.status-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.status-card.aegis-status {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(31, 41, 55, 0.6) 100%);
+}
+
+.status-card.aegis-status:hover {
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 15px 30px rgba(6, 182, 212, 0.2);
+}
+
+.status-card.gehenna-status {
+    border-color: rgba(236, 72, 153, 0.3);
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(31, 41, 55, 0.6) 100%);
+}
+
+.status-card.gehenna-status:hover {
+    border-color: rgba(236, 72, 153, 0.5);
+    box-shadow: 0 15px 30px rgba(236, 72, 153, 0.2);
+}
+
+.status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(31, 41, 55, 0.8);
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.aegis-status .status-icon {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(31, 41, 55, 0.8) 100%);
+    color: #38bdf8;
+}
+
+.gehenna-status .status-icon {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(31, 41, 55, 0.8) 100%);
+    color: #f472b6;
+}
+
+.status-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.status-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.aegis-status .status-value {
+    color: #38bdf8;
+}
+
+.gehenna-status .status-value {
+    color: #f472b6;
+}
+
+.status-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* セクションヘッダー */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.section-title.aegis-accent {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title.gehenna-accent {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+}
+
+/* マップセクション */
+.faction-map-section {
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.map-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.map-container:hover .map-image {
+    transform: scale(1.05);
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.map-container:hover .map-overlay {
+    opacity: 1;
+}
+
+.map-info-panel {
+    background: rgba(31, 41, 55, 0.95);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    border-radius: 8px;
+    padding: 1.5rem;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    max-width: 350px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.map-container:hover .map-info-panel {
+    transform: translateY(0);
+}
+
+.map-info-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.map-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.map-info-list li {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.map-info-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #38bdf8;
+}
+
+/* ギャラリーセクション */
+.faction-gallery-section {
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 16px;
+    padding: 3rem;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    background: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.gallery-item-image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.3s ease;
+    background: rgba(17, 24, 39, 0.8);
+}
+
+.gallery-item:hover .gallery-item-image {
+    transform: scale(1.05);
+}
+
+.gallery-item-content {
+    padding: 1.5rem;
+}
+
+.gallery-item-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-item-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.gallery-item-category {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 12px;
+    padding: 0.25rem 0.75rem;
+    font-weight: 600;
+}
+
+.gallery-item-category.gehenna-category {
+    color: #f472b6;
+    background: rgba(244, 114, 182, 0.2);
+    border-color: rgba(244, 114, 182, 0.3);
+}
+
+.gehenna-detail-page .gallery-item:hover {
+    border-color: rgba(244, 114, 182, 0.5);
+}
+
+.gehenna-detail-page .gallery-item-category {
+    color: #f472b6;
+    background: rgba(244, 114, 182, 0.2);
+    border-color: rgba(244, 114, 182, 0.3);
+}
+
+.gallery-loading {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    padding: 3rem;
+    background: rgba(31, 41, 55, 0.3);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+/* ギャラリーモーダル */
+.gallery-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: rgba(31, 41, 55, 0.9);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(31, 41, 55, 0.8);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.gallery-modal-close:hover {
+    background: rgba(239, 68, 68, 0.8);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: scale(1.1);
+}
+
+.gallery-modal-body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    height: 100%;
+    min-height: 400px;
+}
+
+.gallery-modal-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 24, 39, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-modal-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.gallery-modal-info {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.modal-description {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.modal-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.category-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+}
+
+.category-value {
+    font-size: 0.9rem;
+    color: #38bdf8;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 1024px) {
+    .faction-hero-section {
+        padding: 3rem 2rem;
+    }
+    
+    .faction-status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .status-card {
+        padding: 1.5rem;
+    }
+    
+    .faction-map-section,
+    .faction-gallery-section {
+        padding: 2rem;
+    }
+    
+    .gallery-grid {
+        gap: 1.5rem;
+    }
+    
+    .gallery-modal-body {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .map-overlay {
+        padding: 1.5rem;
+    }
+    
+    .map-info-panel {
+        max-width: 280px;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .faction-hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .faction-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .faction-status-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .status-card {
+        padding: 1rem;
+    }
+    
+    .gallery-grid {
+        gap: 1rem;
+    }
+    
+    .map-overlay {
+        padding: 1rem;
+        /* モバイルでは常に表示 */
+        opacity: 1;
+    }
+    
+    .map-info-panel {
+        max-width: 100%;
+        padding: 1rem;
+        transform: translateY(0) !important;
+    }
+    
+    .map-container:hover .map-overlay {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .back-to-worldview-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .faction-hero-section {
+        padding: 1.5rem 1rem;
+    }
+    
+    .faction-title {
+        font-size: 1.8rem;
+    }
+    
+    .faction-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .faction-description-box {
+        padding: 1.5rem;
+    }
+    
+    .faction-map-section,
+    .faction-gallery-section {
+        padding: 1.5rem;
+    }
+    
+    .map-overlay {
+        padding: 0.75rem;
+    }
+    
+    .map-info-panel {
+        padding: 0.75rem;
+    }
+    
+    .gallery-item-content {
+        padding: 1rem;
+    }
 }
