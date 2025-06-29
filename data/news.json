@@ -25,18 +25,6 @@
       }
     },
     {
-      "id": "news003",
-      "title": "世界設定「バイオ・ショック」現象解説",
-      "description": "神罰の刻（ラグナロク・フォール）後に発生した恐怖の現象「バイオ・ショック」について、詳細な設定資料を公開。異質化と異体化の謎に迫ります。",
-      "image": "https://placehold.co/400x400/111827/ec4899?text=BIO+SHOCK",
-      "date": "2025.06.27",
-      "link": {
-        "url": "https://example.com/bio-shock-details",
-        "type": "external",
-        "target": "_blank"
-      }
-    },
-    {
       "id": "news004",
       "title": "AEGIS都市景観アート公開",
       "description": "地上最後の理想郷AEGISの美しい都市景観アートワークを公開しました。AIによる完璧な管理社会の姿をご覧ください。",
