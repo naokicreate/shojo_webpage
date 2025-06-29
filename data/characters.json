@@ -16,23 +16,6 @@
         "ability": "貢献価値テスト満点"
       },
       "themeColor": "cyan"
-    },
-    {
-      "id": "soil",
-      "name": "ソイル",
-      "nameEn": "Soil (Unit 629)",
-      "image": "https://placehold.co/375x1024/111827/06b6d4?text=SOIL+CHARACTER",
-      "fallbackImage": "https://placehold.co/375x1024/1f2937/9ca3af?text=CHARACTER+IMAGE",
-      "faction": "AEGIS",
-      "layout": "reverse",
-      "description": "ユノの兄であり、AEGISの若き分析官。20代。<br>他人の感情が色や形として「見えてしまう」特殊能力を持つ。<br>ユノとは対照的に人間らしい感情を持つが、<br>能力ゆえに増幅される感情の波を必死にコントロールしている。",
-      "details": {
-        "age": "20代",
-        "affiliation": "AEGIS 分析部",
-        "relationship": "ユノの兄",
-        "ability": "感情視覚化"
-      },
-      "themeColor": "cyan"
     }
   ]
 }

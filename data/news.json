@@ -47,13 +47,6 @@
         "type": "internal",
         "target": "aegis"
       }
-    },
-    {
-      "id": "news005",
-      "title": "設定資料ギャラリー機能追加",
-      "description": "各派閥の設定資料をクリックで拡大表示できるギャラリー機能を追加しました。より詳細に世界観をお楽しみいただけます。",
-      "image": "https://placehold.co/400x400/111827/8b5cf6?text=GALLERY",
-      "date": "2025.06.25"
     }
   ]
 }
