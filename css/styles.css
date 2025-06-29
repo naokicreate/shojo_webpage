@@ -2146,142 +2146,61 @@ main {
     border-radius: 20px;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 1024px) {
-    .faction-hero-section {
-        padding: 3rem 2rem;
-    }
-    
-    .faction-status-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-    }
-    
-    .status-card {
-        padding: 1.5rem;
-    }
-    
-    .faction-map-section,
-    .faction-gallery-section {
-        padding: 2rem;
-    }
-    
-    .gallery-grid {
-        gap: 1.5rem;
-    }
-    
-    .gallery-modal-body {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .map-overlay {
-        padding: 1.5rem;
-    }
-    
-    .map-info-panel {
-        max-width: 280px;
-        padding: 1rem;
-    }
+/* === CHARACTER IMAGE SECTION STYLING === */
+.character-image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to bottom, rgba(8, 145, 178, 0.2), rgba(21, 128, 61, 0.1));
 }
 
-@media (max-width: 768px) {
-    .faction-hero-section {
-        padding: 2rem 1rem;
-    }
-    
-    .faction-title {
-        font-size: 2rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .faction-status-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .status-card {
-        padding: 1rem;
-    }
-    
-    .gallery-grid {
-        gap: 1rem;
-    }
-    
-    .map-overlay {
-        padding: 1rem;
-        /* モバイルでは常に表示 */
-        opacity: 1;
-    }
-    
-    .map-info-panel {
-        max-width: 100%;
-        padding: 1rem;
-        transform: translateY(0) !important;
-    }
-    
-    .map-container:hover .map-overlay {
-        opacity: 1;
-    }
+/* キャラクター画像コンテナの中央配置 */
+.character-image-section .w-full.max-w-sm.mx-auto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (max-width: 640px) {
-    .back-to-worldview-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .faction-hero-section {
-        padding: 1.5rem 1rem;
-    }
-    
-    .faction-title {
-        font-size: 1.8rem;
-    }
-    
-    .faction-logo {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .faction-description-box {
-        padding: 1.5rem;
-    }
-    
-    .faction-map-section,
-    .faction-gallery-section {
-        padding: 1.5rem;
-    }
-    
-    .map-overlay {
-        padding: 0.75rem;
-    }
-    
-    .map-info-panel {
-        padding: 0.75rem;
-    }
-    
-    .gallery-item-content {
-        padding: 1rem;
-    }
-}
-
-/* === CHARACTER PORTRAIT SHADOW OVERRIDE === */
+/* キャラクター画像自体の中央配置とサイズ調整 */
 .character-portrait {
     box-shadow: none !important;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
-/* === GALLERY IMAGE WIDTH OVERRIDE === */
-.gallery-item-image,
-.gallery-item-image-container .gallery-item-image,
-img.gallery-item-image {
-    width: 100% !important;
+/* レスポンシブ対応 */
+@media (min-width: 768px) {
+    .character-image-section {
+        padding: 2rem;
+    }
 }
 
-/* === GALLERY IMAGE CONTAINER IMG OVERRIDE === */
-.gallery-item-image img,
-.gallery-item-image-container img {
-    width: 100% !important;
+/* === CHARACTER THEME COLOR GRADIENTS === */
+/* AEGIS系（cyan） - デフォルト */
+.character-image-section {
+    background: linear-gradient(to bottom, rgba(8, 145, 178, 0.2), rgba(21, 128, 61, 0.1));
+}
+
+/* AEGIS系（cyan） */
+.character-image-section:has(+ .character-info-section .text-cyan-300),
+.character-image-section.cyan-theme {
+    background: linear-gradient(to bottom, rgba(8, 145, 178, 0.2), rgba(21, 128, 61, 0.1));
+}
+
+/* GEHENNA系（pink） */
+.character-image-section:has(+ .character-info-section .text-pink-300),
+.character-image-section.pink-theme {
+    background: linear-gradient(to bottom, rgba(236, 72, 153, 0.2), rgba(190, 24, 93, 0.1));
+}
+
+/* その他のテーマカラー */
+.character-image-section.blue-theme {
+    background: linear-gradient(to bottom, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
+}
+
+.character-image-section.red-theme {
+    background: linear-gradient(to bottom, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.1));
 }

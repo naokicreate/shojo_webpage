@@ -685,7 +685,7 @@ class ProjectGenesisApp {
         `).join('');
 
         const imageSection = `
-            <div class="character-image-section ${isReverse ? 'reverse' : ''} bg-gradient-to-b from-${themeColor}-900/20 to-${themeColor}-800/10 flex items-center justify-center p-6 md:p-8">
+            <div class="character-image-section ${themeColor}-theme ${isReverse ? 'reverse' : ''}">
                 <div class="w-full max-w-sm mx-auto">
                     <img src="${character.image}" alt="${character.name}の立ち絵" class="character-portrait w-full h-auto object-contain rounded-lg" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${character.fallbackImage}';">
                 </div>

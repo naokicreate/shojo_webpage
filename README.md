@@ -108,7 +108,7 @@ sequenceDiagram
         "ability": "能力",
         "relationship": "関係性"             // 追加したいキーは自由に設定
       },
-      "themeColor": "cyan|pink|blue|red"     // 必須: テーマカラー（CSS適用）
+      "themeColor": "blue"                   // 必須: テーマカラー（CSS適用）
     }
   ]
 }
@@ -117,7 +117,7 @@ sequenceDiagram
 **設定可能項目：**
 
 - **layout**: `normal`（画像左・情報右）、`reverse`（情報左・画像右）
-- **themeColor**: CSSで定義されたカラーテーマ（cyan, pink, blue, red等）
+- **themeColor**: CSSで定義されたカラーテーマ（cyan, pink, blue, red等）。現在の例：`blue`
 - **details**: 任意のキー名で詳細情報を追加可能。自動的に日本語ラベルが適用される
 
 #### **news.json - ニュースデータ**
@@ -206,8 +206,10 @@ sequenceDiagram
 
 - JSONベースの動的キャラクター生成
 - レイアウト設定（normal/reverse）対応
-- テーマカラー自動適用
+- テーマカラー自動適用（背景グラデーション含む）
 - 詳細情報の自動整形
+- 画像中央配置とbox-shadow削除対応
+- レスポンシブデザイン対応
 
 ### **ギャラリーシステム**
 
@@ -226,6 +228,24 @@ sequenceDiagram
 - 背景画像の自動切り替え
 - フェードトランジション
 - パフォーマンス最適化
+
+### **最新の実装機能（2025.06.29更新）**
+
+#### **キャラクター表示システム改善**
+
+- **画像中央配置**: キャラクター画像が image-section の横幅中央に自動配置
+- **テーマカラー背景**: JSONで指定したthemeColorに基づく背景グラデーション自動適用
+- **box-shadow削除**: キャラクター画像から影効果を削除してクリーンな表示
+- **レスポンシブ対応**: モバイル・デスクトップ両環境での最適表示
+
+#### **対応テーマカラー**
+
+| カラー名 | 用途 | グラデーション効果 |
+|---------|------|-------------------|
+| `cyan` | AEGIS系（デフォルト） | 青緑グラデーション |
+| `blue` | AEGIS系（現在使用中） | 青系グラデーション |
+| `pink` | GEHENNA系 | ピンク系グラデーション |
+| `red` | 特殊テーマ | 赤系グラデーション |
 
 ## 🛠️ **保守・メンテナンス**
 
@@ -246,6 +266,8 @@ sequenceDiagram
 # 2. data/characters.json を編集
 # 3. 新しいキャラクターオブジェクトを配列に追加
 # 4. layout（normal/reverse）とthemeColorを設定
+# 5. themeColor例: "cyan", "pink", "blue", "red"
+# 6. 画像は自動的に中央配置され、テーマカラーに応じた背景グラデーションが適用される
 ```
 
 #### **4. ギャラリー画像追加**
@@ -365,6 +387,7 @@ http://localhost:8000
 
 - **アーキテクチャ**: SPA (Single Page Application)
 - **スタイリング**: Custom CSS（Tailwindライクなユーティリティクラス含む）
+- **キャラクターシステム**: 動的生成・テーマカラー対応
 - **フォント**: Google Fonts (Noto Sans JP, Orbitron)
 - **JavaScript**: Vanilla ES6+ (フレームワークなし)
 - **データ形式**: JSON
