@@ -1,0 +1,29 @@
+{
+  "headerImages": [
+    {
+      "path": "../img/main_header/ComfyUI_00023_.png",
+      "duration": 5000,
+      "type": "placeholder"
+    },
+    {
+      "path": "../img/main_header/ComfyUI_00024_.png",
+      "duration": 4000,
+      "type": "placeholder"
+    },
+    {
+      "path": "../img/main_header/ComfyUI_00025_.png",
+      "duration": 6000,
+      "type": "placeholder"
+    },
+    {
+      "path": "../img/main_header/ComfyUI_00026_.png",
+      "duration": 4500,
+      "type": "placeholder"
+    }
+  ],
+  "settings": {
+    "fadeTransitionDuration": 1000,
+    "enableAutoplay": true,
+    "pauseOnHover": false
+  }
+}

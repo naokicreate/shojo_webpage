@@ -5,28 +5,48 @@
       "title": "PROJECT: GENESIS 世界観サイト公開",
       "description": "PROJECT: GENESISの世界観とキャラクター設定を紹介する公式サイトが遂に公開されました。ロジック派AEGISと感情派GEHENNAの対立する世界をお楽しみください。",
       "image": "https://placehold.co/400x400/111827/38bdf8?text=NEWS+01",
-      "date": "2025.06.29"
+      "date": "2025.06.29",
+      "link": {
+        "url": "#worldview",
+        "type": "internal",
+        "target": "worldview"
+      }
     },
     {
       "id": "news002", 
       "title": "キャラクター「ユノ」詳細設定公開",
       "description": "AEGIS公安部隊所属の14歳の少女、ユノの詳細なキャラクター設定が公開されました。貢献価値テスト満点の天才少女の秘密に迫ります。",
       "image": "https://placehold.co/400x400/111827/06b6d4?text=YUNO",
-      "date": "2025.06.28"
+      "date": "2025.06.28",
+      "link": {
+        "url": "#characters",
+        "type": "internal",
+        "target": "characters"
+      }
     },
     {
       "id": "news003",
       "title": "世界設定「バイオ・ショック」現象解説",
       "description": "神罰の刻（ラグナロク・フォール）後に発生した恐怖の現象「バイオ・ショック」について、詳細な設定資料を公開。異質化と異体化の謎に迫ります。",
       "image": "https://placehold.co/400x400/111827/ec4899?text=BIO+SHOCK",
-      "date": "2025.06.27"
+      "date": "2025.06.27",
+      "link": {
+        "url": "https://example.com/bio-shock-details",
+        "type": "external",
+        "target": "_blank"
+      }
     },
     {
       "id": "news004",
       "title": "AEGIS都市景観アート公開",
       "description": "地上最後の理想郷AEGISの美しい都市景観アートワークを公開しました。AIによる完璧な管理社会の姿をご覧ください。",
       "image": "https://placehold.co/400x400/111827/22d3ee?text=AEGIS+ART",
-      "date": "2025.06.26"
+      "date": "2025.06.26",
+      "link": {
+        "url": "#aegis",
+        "type": "internal",
+        "target": "aegis"
+      }
     },
     {
       "id": "news005",
