@@ -1949,599 +1949,1758 @@ html, body {
     }
 }
 
-/* =================================
-   FACTION DETAIL PAGES STYLING
-   ================================= */
-
-/* ヒーローセクション */
-.faction-hero-section {
+/* モダンな世界観ページ用スタイル */
+.worldview-hero {
     position: relative;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
     border-radius: 24px;
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     margin-bottom: 4rem;
     overflow: hidden;
-    border: 1px solid rgba(107, 114, 128, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.2);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
 }
 
-.faction-hero-section::before {
+.worldview-hero::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.1;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
     pointer-events: none;
 }
 
-.aegis-hero::before {
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.2) 0%, transparent 50%);
-}
-
-.gehenna-hero::before {
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(236, 72, 153, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(244, 114, 182, 0.2) 0%, transparent 50%);
-}
-
-.faction-hero-content {
+.worldview-hero-content {
     position: relative;
     z-index: 2;
+}
+
+.worldview-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.worldview-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
 }
 
-.faction-logo-container {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-}
-
-.faction-logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.aegis-logo {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(56, 189, 248, 0.1) 100%);
-    border: 2px solid rgba(6, 182, 212, 0.4);
-    color: #06b6d4;
-}
-
-.gehenna-logo {
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(244, 114, 182, 0.1) 100%);
-    border: 2px solid rgba(236, 72, 153, 0.4);
-    color: #ec4899;
-}
-
-.faction-logo:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.logo-icon {
-    transition: transform 0.3s ease;
-}
-
-.faction-logo:hover .logo-icon {
-    transform: scale(1.1);
-}
-
-.faction-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 5vw, 3rem);
+.highlight-term {
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
     font-weight: 700;
-    margin-bottom: 1rem;
-    letter-spacing: 0.15em;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.02em;
 }
 
-.aegis-title {
-    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.highlight-bio-shock {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-.gehenna-title {
-    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.highlight-mineralization {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+    color: #93c5fd;
+    border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-.faction-subtitle {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 2rem;
-    letter-spacing: 0.08em;
-    font-weight: 400;
+.highlight-aberration {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(126, 34, 206, 0.1) 100%);
+    color: #c4b5fd;
+    border: 1px solid rgba(147, 51, 234, 0.3);
 }
 
-.faction-description-box {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 2rem;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.faction-hero-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0;
-}
-
-/* ステータスグリッド */
-.faction-status-grid {
+/* 高級感のある派閥カード */
+.faction-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-}
-
-.status-card {
-    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
-    border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(107, 114, 128, 0.3);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    position: relative;
-    overflow: hidden;
-}
-
-.status-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, currentColor, transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.status-card:hover::before {
-    opacity: 1;
-}
-
-.status-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.aegis-status {
-    border-top: 3px solid rgba(6, 182, 212, 0.5);
-    color: #06b6d4;
-}
-
-.aegis-status:hover {
-    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
-}
-
-.gehenna-status {
-    border-top: 3px solid rgba(236, 72, 153, 0.5);
-    color: #ec4899;
-}
-
-.gehenna-status:hover {
-    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
-}
-
-.status-icon {
-    margin: 0 auto 1rem;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.status-card:hover .status-icon {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.status-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0.5rem;
-}
-
-.status-value {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    color: currentColor;
-}
-
-.status-description {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-}
-
-/* セクションヘッダー */
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.08em;
-}
-
-.aegis-accent {
-    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.gehenna-accent {
-    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* マップセクション */
-.faction-map-section {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    border: 1px solid rgba(107, 114, 128, 0.2);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-}
-
-.map-container {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
-
-.map-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.map-container:hover .map-image {
-    transform: scale(1.05);
-}
-
-.map-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
-    display: flex;
-    align-items: flex-start;
-    padding: 2rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.map-container:hover .map-overlay {
-    opacity: 1;
-}
-
-.map-info-panel {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 12px;
-    padding: 1.5rem;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.map-info-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 1rem;
-}
-
-.map-info-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.map-info-list li {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
-.map-info-list li::before {
-    content: '●';
-    position: absolute;
-    left: 0;
-    color: currentColor;
-}
-
-/* ギャラリーセクション */
-.faction-gallery-section {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    border: 1px solid rgba(107, 114, 128, 0.2);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
+    margin-bottom: 4rem;
 }
 
-.gallery-item {
+.faction-card {
+    position: relative;
     background: linear-gradient(145deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
-    border-radius: 16px;
+    border-radius: 20px;
+    padding: 0;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(107, 114, 128, 0.3);
-    cursor: pointer;
-    position: relative;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
 }
 
-.gallery-item:hover {
+.faction-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.8);
 }
 
-.gallery-item-image {
+.faction-card.aegis {
+    border-top: 3px solid #06b6d4;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(6, 182, 212, 0.1);
+}
+
+.faction-card.aegis:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(6, 182, 212, 0.3),
+        0 0 0 1px rgba(6, 182, 212, 0.2),
+        inset 0 1px 0 rgba(6, 182, 212, 0.2);
+}
+
+.faction-card.gehenna {
+    border-top: 3px solid #ec4899;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(236, 72, 153, 0.1),
+        inset 0 1px 0 rgba(236, 72, 153, 0.1);
+}
+
+.faction-card.gehenna:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(236, 72, 153, 0.3),
+        0 0 0 1px rgba(236, 72, 153, 0.2),
+        inset 0 1px 0 rgba(236, 72, 153, 0.2);
+}
+
+.faction-image-container {
     position: relative;
-    height: 200px;
+    height: 240px;
     overflow: hidden;
 }
 
-.gallery-item img {
+.faction-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease;
 }
 
-.gallery-item:hover img {
+.faction-card:hover .faction-image {
     transform: scale(1.1);
 }
 
-.gallery-item-overlay {
+.faction-image-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
-.gallery-item:hover .gallery-item-overlay {
-    opacity: 1;
-}
-
-.gallery-item-content {
-    padding: 1.5rem;
-}
-
-.gallery-item-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-    letter-spacing: 0.02em;
-}
-
-.gallery-item-description {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
-    overflow: hidden;
-}
-
-.gallery-item-category {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.gallery-loading {
-    text-align: center;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
-    padding: 3rem;
-}
-
-/* ギャラリーモーダル */
-.gallery-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.faction-content {
     padding: 2rem;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.gallery-modal.hidden {
-    display: none !important;
-    opacity: 0;
-}
-
-.gallery-modal-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-}
-
-.gallery-modal-content {
     position: relative;
-    background: linear-gradient(145deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%);
-    border-radius: 24px;
-    max-width: 1200px;
-    width: 100%;
-    max-height: 90vh;
-    overflow: hidden;
-    border: 1px solid rgba(107, 114, 128, 0.3);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-    pointer-events: all;
-    cursor: default;
 }
 
-.gallery-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.gallery-modal-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-}
-
-.gallery-modal-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 500px;
-}
-
-.gallery-modal-image {
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.gallery-modal-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.gallery-modal-info {
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.modal-title {
+.faction-title {
     font-size: 1.8rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-    letter-spacing: 0.02em;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
 }
 
-.modal-description {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    line-height: 1.7;
+.faction-title.aegis {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-title.gehenna {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
     margin-bottom: 2rem;
 }
 
-.modal-category {
+.faction-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.faction-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.faction-button:hover::before {
+    left: 100%;
+}
+
+.faction-button.aegis {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.8) 0%, rgba(56, 189, 248, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}
+
+.faction-button.aegis:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(56, 189, 248, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+    transform: translateY(-2px);
+}
+
+.faction-button.gehenna {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.8) 0%, rgba(244, 114, 182, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+.faction-button.gehenna:hover {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+}
+
+.world-map-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.world-map-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.world-map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .faction-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .worldview-hero {
+        padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .faction-content {
+        padding: 1.5rem;
+    }
+}
+
+/* モダンな世界観ページ用スタイル */
+.worldview-hero {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.worldview-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.worldview-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.worldview-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.worldview-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.highlight-term {
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.highlight-bio-shock {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.highlight-mineralization {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+    color: #93c5fd;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.highlight-aberration {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(126, 34, 206, 0.1) 100%);
+    color: #c4b5fd;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* 高級感のある派閥カード */
+.faction-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.faction-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.faction-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.8);
+}
+
+.faction-card.aegis {
+    border-top: 3px solid #06b6d4;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(6, 182, 212, 0.1);
+}
+
+.faction-card.aegis:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(6, 182, 212, 0.3),
+        0 0 0 1px rgba(6, 182, 212, 0.2),
+        inset 0 1px 0 rgba(6, 182, 212, 0.2);
+}
+
+.faction-card.gehenna {
+    border-top: 3px solid #ec4899;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(236, 72, 153, 0.1),
+        inset 0 1px 0 rgba(236, 72, 153, 0.1);
+}
+
+.faction-card.gehenna:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(236, 72, 153, 0.3),
+        0 0 0 1px rgba(236, 72, 153, 0.2),
+        inset 0 1px 0 rgba(236, 72, 153, 0.2);
+}
+
+.faction-image-container {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.faction-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.faction-card:hover .faction-image {
+    transform: scale(1.1);
+}
+
+.faction-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.faction-content {
+    padding: 2rem;
+    position: relative;
+}
+
+.faction-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.faction-title.aegis {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-title.gehenna {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.faction-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.faction-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.faction-button:hover::before {
+    left: 100%;
+}
+
+.faction-button.aegis {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.8) 0%, rgba(56, 189, 248, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}
+
+.faction-button.aegis:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(56, 189, 248, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+    transform: translateY(-2px);
+}
+
+.faction-button.gehenna {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.8) 0%, rgba(244, 114, 182, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+.faction-button.gehenna:hover {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+}
+
+.world-map-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.world-map-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.world-map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .faction-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .worldview-hero {
+        padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .faction-content {
+        padding: 1.5rem;
+    }
+}
+
+/* モダンな世界観ページ用スタイル */
+.worldview-hero {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.worldview-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.worldview-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.worldview-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.worldview-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.highlight-term {
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.highlight-bio-shock {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.highlight-mineralization {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+    color: #93c5fd;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.highlight-aberration {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(126, 34, 206, 0.1) 100%);
+    color: #c4b5fd;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* 高級感のある派閥カード */
+.faction-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.faction-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.faction-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.8);
+}
+
+.faction-card.aegis {
+    border-top: 3px solid #06b6d4;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(6, 182, 212, 0.1);
+}
+
+.faction-card.aegis:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(6, 182, 212, 0.3),
+        0 0 0 1px rgba(6, 182, 212, 0.2),
+        inset 0 1px 0 rgba(6, 182, 212, 0.2);
+}
+
+.faction-card.gehenna {
+    border-top: 3px solid #ec4899;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(236, 72, 153, 0.1),
+        inset 0 1px 0 rgba(236, 72, 153, 0.1);
+}
+
+.faction-card.gehenna:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(236, 72, 153, 0.3),
+        0 0 0 1px rgba(236, 72, 153, 0.2),
+        inset 0 1px 0 rgba(236, 72, 153, 0.2);
+}
+
+.faction-image-container {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.faction-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.faction-card:hover .faction-image {
+    transform: scale(1.1);
+}
+
+.faction-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.faction-content {
+    padding: 2rem;
+    position: relative;
+}
+
+.faction-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.faction-title.aegis {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-title.gehenna {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.faction-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.faction-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.faction-button:hover::before {
+    left: 100%;
+}
+
+.faction-button.aegis {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.8) 0%, rgba(56, 189, 248, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}
+
+.faction-button.aegis:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(56, 189, 248, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+    transform: translateY(-2px);
+}
+
+.faction-button.gehenna {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.8) 0%, rgba(244, 114, 182, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+.faction-button.gehenna:hover {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+}
+
+.world-map-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.world-map-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.world-map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+    .faction-status-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-modal-body {
+        grid-template-columns: 1fr;
+        min-height: 200px;
+    }
+    
+    .gallery-modal-info {
+        padding: 2rem;
+    }
+    
+    .faction-hero-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .faction-map-section,
+    .faction-gallery-section {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* === CHARACTER LAYOUT FORCE RULES === */
+/* キャラクターカードの強制横並びレイアウト */
+#content-characters .grid {
+    display: grid !important;
+}
+
+/* タブレット以上で強制的に横並び */
+@media (min-width: 768px) {
+    #content-characters .grid {
+        grid-template-columns: 2fr 3fr !important;
+        gap: 0 !important;
+    }
+    
+    #content-characters .md\\:col-span-2 {
+        grid-column: span 1 !important;
+    }
+    
+    #content-characters .md\\:col-span-3 {
+        grid-column: span 1 !important;
+    }
+    
+    /* ソイルの逆配置 */
+    #content-characters .md\\:order-1 {
+        order: 1 !important;
+    }
+    
+    #content-characters .md\\:order-2 {
+        order: 2 !important;
+    }
+}
+
+/* デスクトップでさらに調整 */
+@media (min-width: 1024px) {
+    #content-characters .grid {
+        grid-template-columns: 2fr 3fr !important;
+    }
+}
+
+/* キャラクター情報カードのスタイル */
+.character-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 最小幅を200pxから180pxに縮小 */
+    gap: 1rem;
+}
+
+/* グラデーション背景 */
+.character-bg-gradient {
+    background: linear-gradient(
+        135deg,
+        rgba(6, 182, 212, 0.1) 0%,
+        rgba(17, 24, 39, 0.8) 50%,
+        rgba(6, 182, 212, 0.05) 100%
+    );
+}
+
+/* 画像ギャラリー用モーダル */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-modal-content {
+    max-width: 80vw;
+    max-height: 80vh;
+    position: relative;
+    animation: modalZoomIn 0.3s ease;
+}
+
+.image-modal-content img {
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .image-modal-content {
+        max-width: 95vw;
+        max-height: 70vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-modal-content {
+        max-width: 98vw;
+        max-height: 60vh;
+    }
+}
+
+.image-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
-.category-label {
+.image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.gallery-image {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+@keyframes modalZoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ヘッダー画像スタイル */
+.header-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .header-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-image {
+        height: 120px;
+    }
+}
+
+/* アニメ特設サイト風ヘッダー */
+.hero-header {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    padding: 2.5rem 0 3.5rem 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* ヘッダー背景画像スライドショー */
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.header-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.header-bg-image.active {
+    opacity: 0.3;
+}
+
+.header-bg-image.loaded {
+    opacity: 0;
+}
+
+.header-bg-image.active.loaded {
+    opacity: 0.3;
+}
+
+/* オーバーレイでコンテンツの可読性を確保 */
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.6) 50%, rgba(15, 23, 42, 0.7) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.hero-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.05)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.main-title {
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 5px rgba(56, 189, 248, 0.2);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.nav-container {
+    position: relative;
+    z-index: 10;
+}
+
+.modern-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 50px;
+    padding: 0.5rem;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+.modern-tab {
+    padding: 1rem 2.5rem;
+    border-radius: 25px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.category-value {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 0.5rem 1rem;
+.modern-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.modern-tab:hover::before {
+    left: 100%;
+}
+
+.modern-tab:hover {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+}
+
+.modern-tab.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(6, 182, 212, 0.2) 100%);
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+}
+
+.geometric-accent {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(56, 189, 248, 0.1);
+    border-radius: 50%;
+    top: 20%;
+    right: 10%;
+    animation: rotate 15s linear infinite;
+}
+
+.geometric-accent::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 50%;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 1px 5px rgba(56, 189, 248, 0.2);
+    }
+    100% {
+        text-shadow: 0 1px 8px rgba(56, 189, 248, 0.3), 0 1px 15px rgba(6, 182, 212, 0.1);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-header {
+        padding: 2rem 0 2.5rem 0;
+    }
+    
+    .modern-nav {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+    
+    .modern-tab {
+        padding: 0.8rem 1.5rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .geometric-accent {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .modern-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .modern-tab {
+        flex: 1;
+        min-width: 100px;
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ニュースページスタイル */
+.news-container {
+    max-width: 1000px; /* 800px から 1000px に拡張 */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.news-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1.5rem;
+    background-color: rgba(31, 41, 55, 0.5);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.news-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+.news-item:hover::before {
+    left: 100%;
+}
+
+.news-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+.news-item.clickable:hover {
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
+}
+
+.news-item.no-link {
+    cursor: default;
+}
+
+.news-item.no-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(107, 114, 128, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.news-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.news-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+}
+
+.news-header {
+    margin-bottom: 0.5rem;
+}
+
+.news-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.news-date {
+    font-size: 0.875rem;
+    color: rgba(56, 189, 248, 0.8);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
+}
+
+.news-description {
+    color: #d1d5db;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+}
+
+.news-loading {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    padding: 3rem;
+}
+
+.news-error {
+    text-align: center;
+    color: #ef4444;
+    font-size: 1.1rem;
+    padding: 3rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+/* ニュースリンクインジケーター */
+.news-link-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.news-link-indicator svg {
+    width: 14px;
+    height: 14px;
+    color: rgba(56, 189, 248, 0.9);
+}
+
+.news-item:hover .news-link-indicator {
+    opacity: 1;
+    transform: scale(1.1);
+    background: rgba(56, 189, 248, 0.3);
+    border-color: rgba(56, 189, 248, 0.6);
+}
+
+.news-link-indicator.external {
+    background: rgba(236, 72, 153, 0.2);
+    border-color: rgba(236, 72, 153, 0.4);
+}
+
+.news-link-indicator.external svg {
+    color: rgba(236, 72, 153, 0.9);
+}
+
+.news-item:hover .news-link-indicator.external {
+    background: rgba(236, 72, 153, 0.3);
+    border-color: rgba(236, 72, 153, 0.6);
+}
+
+/* モダンな世界観ページスタイル */
+.worldview-hero {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.worldview-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.worldview-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.worldview-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.worldview-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.highlight-term {
+    padding: 0.2em 0.5em;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.highlight-bio-shock {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.highlight-mineralization {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+    color: #93c5fd;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.highlight-aberration {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(126, 34, 206, 0.1) 100%);
+    color: #c4b5fd;
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* 高級感のある派閥カード */
+.faction-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.faction-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
     border-radius: 20px;
-    font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(107, 114, 128, 0.3);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
 }
 
-/* レスポンシブデザイン */
+.faction-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.8);
+}
+
+.faction-card.aegis {
+    border-top: 3px solid #06b6d4;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(6, 182, 212, 0.1);
+}
+
+.faction-card.aegis:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(6, 182, 212, 0.3),
+        0 0 0 1px rgba(6, 182, 212, 0.2),
+        inset 0 1px 0 rgba(6, 182, 212, 0.2);
+}
+
+.faction-card.gehenna {
+    border-top: 3px solid #ec4899;
+    box-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(236, 72, 153, 0.1),
+        inset 0 1px 0 rgba(236, 72, 153, 0.1);
+}
+
+.faction-card.gehenna:hover {
+    box-shadow: 
+        0 35px 60px -12px rgba(236, 72, 153, 0.3),
+        0 0 0 1px rgba(236, 72, 153, 0.2),
+        inset 0 1px 0 rgba(236, 72, 153, 0.2);
+}
+
+.faction-image-container {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.faction-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.faction-card:hover .faction-image {
+    transform: scale(1.1);
+}
+
+.faction-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.faction-content {
+    padding: 2rem;
+    position: relative;
+}
+
+.faction-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.faction-title.aegis {
+    background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-title.gehenna {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.faction-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.faction-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.faction-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.faction-button:hover::before {
+    left: 100%;
+}
+
+.faction-button.aegis {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.8) 0%, rgba(56, 189, 248, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}
+
+.faction-button.aegis:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(56, 189, 248, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+    transform: translateY(-2px);
+}
+
+.faction-button.gehenna {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.8) 0%, rgba(244, 114, 182, 0.6) 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+.faction-button.gehenna:hover {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.8) 100%);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+}
+
+.world-map-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+
+.world-map-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.world-map-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
 @media (max-width: 768px) {
     .faction-status-grid {
         grid-template-columns: 1fr;
