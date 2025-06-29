@@ -2204,3 +2204,16 @@ main {
 .character-image-section.red-theme {
     background: linear-gradient(to bottom, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.1));
 }
+
+/* === GALLERY IMAGE WIDTH OVERRIDE === */
+.gallery-item-image,
+.gallery-item-image-container .gallery-item-image,
+img.gallery-item-image {
+    width: 100% !important;
+}
+
+/* === GALLERY IMAGE CONTAINER IMG OVERRIDE === */
+.gallery-item-image img,
+.gallery-item-image-container img {
+    width: 100% !important;
+}

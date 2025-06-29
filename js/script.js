@@ -3,12 +3,14 @@
  */
 class ProjectGenesisApp {
     constructor() {
+        console.log('ProjectGenesisApp: 初期化開始');
         this.initElements();
         this.initEventListeners();
         this.initializeApp();
         this.initImageModal();
         this.initHeaderSlideshow();
         this.initGallerySystem(); // ギャラリーシステムの初期化
+        console.log('ProjectGenesisApp: 初期化完了');
     }
 
     initElements() {
@@ -641,17 +643,23 @@ class ProjectGenesisApp {
 
     // === CHARACTER SYSTEM ===
     async loadCharacters() {
+        console.log('キャラクター読み込み開始');
         try {
             const response = await fetch('data/characters.json');
+            console.log('characters.json fetch完了:', response.status);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
+            console.log('キャラクターデータ:', data);
             this.renderCharacters(data.characters);
+            console.log('キャラクター描画完了');
             
         } catch (error) {
             console.error('キャラクターの読み込みに失敗しました:', error);
+            // GitHub Pages用フォールバック
+            this.renderCharactersFallback();
         }
     }
 
@@ -736,6 +744,70 @@ class ProjectGenesisApp {
             'relationship': '関係'
         };
         return labels[key] || key;
+    }
+
+    // キャラクターフォールバック描画
+    renderCharactersFallback() {
+        console.log('キャラクターフォールバック描画開始');
+        const charactersContainer = document.querySelector('#content-characters');
+        
+        const fallbackHTML = `
+            <header class="text-center mb-12">
+                <h2 class="font-orbitron text-4xl md:text-6xl font-bold text-white tracking-widest">CHARACTERS</h2>
+                <p class="text-gray-400 mt-2 text-lg">登場人物</p>
+            </header>
+            
+            <div class="mb-16">
+                <div class="card rounded-lg overflow-hidden border border-blue-700/50 border-glow-blue max-w-6xl mx-auto">
+                    <div class="character-force-horizontal">
+                        <div class="character-image-section blue-theme">
+                            <div class="w-full max-w-sm mx-auto">
+                                <img src="img/characters/chara_yuka_001.png" alt="ユノの立ち絵" class="character-portrait w-full h-auto object-contain rounded-lg" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/375x1024/1f2937/9ca3af?text=CHARACTER+IMAGE';">
+                            </div>
+                        </div>
+                        <div class="character-info-section p-6 md:p-8 lg:p-10 flex flex-col justify-center character-bg-gradient">
+                            <div class="space-y-8">
+                                <div class="text-center sm:text-left">
+                                    <h3 class="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold text-blue-300 text-shadow-blue mb-3">ユノ</h3>
+                                    <p class="font-orbitron text-xl md:text-2xl lg:text-3xl text-blue-400 mb-8">Yuno (Unit 703)</p>
+                                </div>
+                                
+                                <div class="space-y-6">
+                                    <div class="border-l-4 border-blue-400 pl-6">
+                                        <h4 class="text-xl font-bold text-white mb-3">プロフィール</h4>
+                                        <p class="text-gray-300 leading-relaxed text-lg">
+                                            貢献価値テストで満点を叩き出したAEGISの至宝。<br>14歳という若さで、最も危険な任務が多いとされる<br>公安部隊に配属されたエリート。<br>感情の起伏が極端に少なく、常にぼーっとしているように見える。
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="character-info-grid mt-8">
+                                        <div class="bg-gray-800/60 rounded-lg p-4 border border-blue-500/20">
+                                            <h5 class="text-blue-300 font-bold mb-2 text-lg">年齢</h5>
+                                            <p class="text-gray-300 text-base">14歳</p>
+                                        </div>
+                                        <div class="bg-gray-800/60 rounded-lg p-4 border border-blue-500/20">
+                                            <h5 class="text-blue-300 font-bold mb-2 text-lg">所属</h5>
+                                            <p class="text-gray-300 text-base">AEGIS 公安部隊</p>
+                                        </div>
+                                        <div class="bg-gray-800/60 rounded-lg p-4 border border-blue-500/20">
+                                            <h5 class="text-blue-300 font-bold mb-2 text-lg">特徴</h5>
+                                            <p class="text-gray-300 text-base">感情表現が少ない</p>
+                                        </div>
+                                        <div class="bg-gray-800/60 rounded-lg p-4 border border-blue-500/20">
+                                            <h5 class="text-blue-300 font-bold mb-2 text-lg">能力</h5>
+                                            <p class="text-gray-300 text-base">貢献価値テスト満点</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        charactersContainer.innerHTML = fallbackHTML;
+        console.log('キャラクターフォールバック描画完了');
     }
 }
 
