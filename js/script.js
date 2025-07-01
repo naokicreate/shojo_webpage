@@ -1466,8 +1466,12 @@ class MusicManager {
     
     createTrackCard(track) {
         const tagsHtml = track.tags?.map(tag => 
-            `<span class="music-tag">${tag}</span>`
+            `<span class="music-card-tag" data-tag="${tag.toLowerCase().replace(/\s+/g, '-')}">${tag}</span>`
         ).join('') || '';
+        
+        // ジャンルとムードもタグとして追加
+        const genreTag = track.genre ? `<span class="music-card-tag genre-tag">${track.genre}</span>` : '';
+        const moodTag = track.mood ? `<span class="music-card-tag mood-tag">${track.mood}</span>` : '';
         
         return `
             <div class="music-card" data-track-id="${track.id}">
@@ -1486,10 +1490,10 @@ class MusicManager {
                     <p class="music-card-artist">${track.artist}</p>
                     <div class="music-card-info">
                         <span>${track.duration}</span>
-                        <span>${track.genre || ''}</span>
+                        <span>${track.releaseDate || ''}</span>
                     </div>
                     <div class="music-card-tags">
-                        ${tagsHtml}
+                        ${tagsHtml}${genreTag}${moodTag}
                     </div>
                 </div>
             </div>

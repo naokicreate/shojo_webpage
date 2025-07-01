@@ -28,12 +28,12 @@
       "id": "news005",
       "title": "楽曲の追加",
       "description": "ユノのイメージソングが公開されました。彼女の心情を表現した楽曲で、物語の世界観をより深く感じていただけます。",
-      "image": "https://placehold.co/400x400/111827/22d3ee?text=GEHENNA+CHARACTER",
+      "image": "img/music/ComfyUI_00042_.png",
       "date": "2025.07.01",
       "link": {
-        "url": "#characters",
+        "url": "#music",
         "type": "internal",
-        "target": "characters"
+        "target": "music"
       }
     }
   ]
