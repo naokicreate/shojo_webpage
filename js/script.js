@@ -1104,19 +1104,52 @@ class ProjectGenesisApp {
 
     showAudioPermissionDialog() {
         console.log('音楽再生許可ダイアログを表示中...');
+        
+        // GitHub Pages対応: 要素が見つからない場合は再取得を試行
+        if (!this.audioPermissionModal) {
+            console.log('要素再取得を試行...');
+            this.audioPermissionModal = document.getElementById('audio-permission-modal');
+            this.audioPermissionYes = document.getElementById('audio-permission-yes');
+            this.audioPermissionNo = document.getElementById('audio-permission-no');
+        }
+        
         console.log('ダイアログ要素の状態:', {
-            modal: this.audioPermissionModal,
+            modal: !!this.audioPermissionModal,
+            yes: !!this.audioPermissionYes,
+            no: !!this.audioPermissionNo,
             hasHiddenClass: this.audioPermissionModal ? this.audioPermissionModal.classList.contains('hidden') : null,
             computedStyle: this.audioPermissionModal ? window.getComputedStyle(this.audioPermissionModal).display : null
         });
         
         if (this.audioPermissionModal) {
+            // GitHub Pages対応: より確実な表示処理
             this.audioPermissionModal.classList.remove('hidden');
             this.audioPermissionModal.style.display = 'flex';
+            this.audioPermissionModal.style.opacity = '1';
+            this.audioPermissionModal.style.visibility = 'visible';
             document.body.style.overflow = 'hidden';
+            
+            // イベントリスナーがまだ設定されていない場合は設定
+            if (this.audioPermissionYes && !this.audioPermissionYes.hasAttribute('data-listener-set')) {
+                this.audioPermissionYes.addEventListener('click', () => {
+                    this.handleAudioPermissionResponse(true);
+                });
+                this.audioPermissionYes.setAttribute('data-listener-set', 'true');
+            }
+            
+            if (this.audioPermissionNo && !this.audioPermissionNo.hasAttribute('data-listener-set')) {
+                this.audioPermissionNo.addEventListener('click', () => {
+                    this.handleAudioPermissionResponse(false);
+                });
+                this.audioPermissionNo.setAttribute('data-listener-set', 'true');
+            }
+            
             console.log('ダイアログ表示完了');
         } else {
-            console.error('ダイアログ要素が見つかりません');
+            console.error('ダイアログ要素が見つかりません - DOM要素一覧:');
+            console.error('modal:', document.getElementById('audio-permission-modal'));
+            console.error('yes button:', document.getElementById('audio-permission-yes'));
+            console.error('no button:', document.getElementById('audio-permission-no'));
         }
     }
 
@@ -1124,6 +1157,9 @@ class ProjectGenesisApp {
         console.log('音楽再生許可ダイアログを非表示');
         if (this.audioPermissionModal) {
             this.audioPermissionModal.classList.add('hidden');
+            this.audioPermissionModal.style.display = 'none';
+            this.audioPermissionModal.style.opacity = '0';
+            this.audioPermissionModal.style.visibility = 'hidden';
             document.body.style.overflow = '';
         }
     }
@@ -1194,15 +1230,38 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('アプリケーション初期化開始');
         window.projectGenesisApp = new ProjectGenesisApp();
         
-        // 音楽再生許可ダイアログをページ読み込み後に表示
+        // GitHub Pages環境でのダイアログ表示
+        // さらに長い遅延を設けて確実に表示
         setTimeout(() => {
-            if (window.projectGenesisApp && typeof window.projectGenesisApp.showAudioPermissionDialog === 'function') {
-                console.log('リロード後のダイアログ表示実行');
-                window.projectGenesisApp.showAudioPermissionDialog();
+            if (window.projectGenesisApp) {
+                console.log('GitHub Pages対応: ダイアログ表示実行');
+                
+                // ダイアログ要素の再取得を試行
+                const modal = document.getElementById('audio-permission-modal');
+                const yesBtn = document.getElementById('audio-permission-yes');
+                const noBtn = document.getElementById('audio-permission-no');
+                
+                console.log('GitHub Pages: 要素チェック', {
+                    modal: !!modal,
+                    yesBtn: !!yesBtn,
+                    noBtn: !!noBtn
+                });
+                
+                if (modal && yesBtn && noBtn) {
+                    // 要素を直接アプリインスタンスに設定
+                    window.projectGenesisApp.audioPermissionModal = modal;
+                    window.projectGenesisApp.audioPermissionYes = yesBtn;
+                    window.projectGenesisApp.audioPermissionNo = noBtn;
+                    
+                    // ダイアログを表示
+                    window.projectGenesisApp.showAudioPermissionDialog();
+                } else {
+                    console.error('GitHub Pages: ダイアログ要素が見つかりません');
+                }
             } else {
-                console.error('アプリケーションまたはダイアログメソッドが見つかりません');
+                console.error('GitHub Pages: アプリケーションが見つかりません');
             }
-        }, 2000); // 2秒後に実行
+        }, 3000); // GitHub Pages用に3秒の遅延
         
-    }, 100);
+    }, 200); // DOM読み込み後の遅延を200msに増加
 });
