@@ -287,6 +287,14 @@ class ProjectGenesisApp {
                 this.showContent(this.charactersContent);
                 this.setActiveTab(this.charactersBtn);
                 break;
+            case 'music':
+                this.showContent(this.musicContent);
+                this.setActiveTab(this.musicBtn);
+                // MusicManagerがトラックを読み込んでいることを確認
+                if (window.musicManager && window.musicManager.tracks.length === 0) {
+                    window.musicManager.init();
+                }
+                break;
             case 'aegis':
                 this.showContent(this.aegisContent);
                 break;
