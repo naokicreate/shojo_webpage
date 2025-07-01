@@ -822,6 +822,22 @@ class ProjectGenesisApp {
         this.volumeSlider = document.getElementById('volume-slider');
         this.volumePercentage = document.getElementById('volume-percentage');
         
+        // ダイアログ要素の取得（少し待ってから取得を試行）
+        setTimeout(() => {
+            this.audioPermissionModal = document.getElementById('audio-permission-modal');
+            this.audioPermissionYes = document.getElementById('audio-permission-yes');
+            this.audioPermissionNo = document.getElementById('audio-permission-no');
+            
+            console.log('ダイアログ要素取得結果:', {
+                modal: !!this.audioPermissionModal,
+                yes: !!this.audioPermissionYes,
+                no: !!this.audioPermissionNo
+            });
+            
+            // 音楽再生許可ダイアログの初期化
+            this.initAudioPermissionDialog();
+        }, 100);
+        
         console.log('音声要素チェック:', {
             audioElement: !!this.audioElement,
             audioToggleBtn: !!this.audioToggleBtn,
@@ -843,7 +859,7 @@ class ProjectGenesisApp {
 
         // 初期設定
         this.isPlaying = false;
-        this.currentVolume = 0.2; // 20%
+        this.currentVolume = 0.9; // 90%
         this.audioElement.volume = this.currentVolume;
         this.showVolumeControl = false;
         
@@ -1041,37 +1057,119 @@ class ProjectGenesisApp {
         }
     }
 
-    // 設定の保存
+    // 音楽再生許可ダイアログの初期化
+    initAudioPermissionDialog() {
+        console.log('音楽再生許可ダイアログ初期化開始');
+        console.log('要素チェック:', {
+            modal: !!this.audioPermissionModal,
+            yes: !!this.audioPermissionYes,
+            no: !!this.audioPermissionNo
+        });
+        
+        if (!this.audioPermissionModal || !this.audioPermissionYes || !this.audioPermissionNo) {
+            console.error('音楽再生許可ダイアログの要素が見つかりません:', {
+                modal: this.audioPermissionModal,
+                yes: this.audioPermissionYes,
+                no: this.audioPermissionNo
+            });
+            return;
+        }
+
+        // ダイアログのイベントリスナー設定のみ行う
+        this.audioPermissionYes.addEventListener('click', () => {
+            this.handleAudioPermissionResponse(true);
+        });
+
+        this.audioPermissionNo.addEventListener('click', () => {
+            this.handleAudioPermissionResponse(false);
+        });
+
+        // オーバーレイクリックで閉じる
+        const overlay = this.audioPermissionModal.querySelector('.audio-permission-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                this.handleAudioPermissionResponse(false);
+            });
+        }
+
+        // ESCキーで閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !this.audioPermissionModal.classList.contains('hidden')) {
+                this.handleAudioPermissionResponse(false);
+            }
+        });
+        
+        console.log('音楽再生許可ダイアログ初期化完了');
+    }
+
+    showAudioPermissionDialog() {
+        console.log('音楽再生許可ダイアログを表示中...');
+        console.log('ダイアログ要素の状態:', {
+            modal: this.audioPermissionModal,
+            hasHiddenClass: this.audioPermissionModal ? this.audioPermissionModal.classList.contains('hidden') : null,
+            computedStyle: this.audioPermissionModal ? window.getComputedStyle(this.audioPermissionModal).display : null
+        });
+        
+        if (this.audioPermissionModal) {
+            this.audioPermissionModal.classList.remove('hidden');
+            this.audioPermissionModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            console.log('ダイアログ表示完了');
+        } else {
+            console.error('ダイアログ要素が見つかりません');
+        }
+    }
+
+    hideAudioPermissionDialog() {
+        console.log('音楽再生許可ダイアログを非表示');
+        if (this.audioPermissionModal) {
+            this.audioPermissionModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    }
+
+    async handleAudioPermissionResponse(allowAudio) {
+        console.log('音楽再生許可応答:', allowAudio);
+        this.hideAudioPermissionDialog();
+
+        if (allowAudio) {
+            try {
+                await this.playAudio();
+                console.log('自動再生成功');
+            } catch (error) {
+                console.log('自動再生失敗（ブラウザ制限）:', error);
+                // 自動再生が失敗した場合でも、ユーザーは後で手動で再生できる
+            }
+        } else {
+            console.log('ユーザーが音楽再生を拒否');
+        }
+    }
+
+    // 音声設定の保存
     saveAudioSettings() {
         try {
             const settings = {
                 volume: this.currentVolume,
                 isPlaying: this.isPlaying
             };
-            localStorage.setItem('projectGenesis_audioSettings', JSON.stringify(settings));
+            localStorage.setItem('audioSettings', JSON.stringify(settings));
+            console.log('音声設定を保存:', settings);
         } catch (error) {
             console.warn('音声設定の保存に失敗:', error);
         }
     }
 
-    // 設定の読み込み
+    // 音声設定の読み込み
     loadAudioSettings() {
         try {
-            const savedSettings = localStorage.getItem('projectGenesis_audioSettings');
+            const savedSettings = localStorage.getItem('audioSettings');
             if (savedSettings) {
                 const settings = JSON.parse(savedSettings);
-                
-                // 音量設定の復元
-                if (typeof settings.volume === 'number') {
+                if (settings.volume !== undefined) {
                     this.currentVolume = Math.max(0, Math.min(1, settings.volume));
                     this.audioElement.volume = this.currentVolume;
                 }
-                
-                // 再生状態の復元（自動再生はしない）
-                this.isPlaying = false; // 常にfalseで開始
-                this.updatePlayButton();
-                
-                console.log('音声設定を復元しました');
+                console.log('音声設定を復元:', settings);
             }
         } catch (error) {
             console.warn('音声設定の読み込みに失敗:', error);
@@ -1089,5 +1187,22 @@ function closeImageModal() {
 
 // アプリケーション起動
 document.addEventListener('DOMContentLoaded', () => {
-    window.projectGenesisApp = new ProjectGenesisApp();
+    console.log('DOMContentLoaded イベント発生');
+    
+    // 確実にDOMが完全に読み込まれるまで少し待つ
+    setTimeout(() => {
+        console.log('アプリケーション初期化開始');
+        window.projectGenesisApp = new ProjectGenesisApp();
+        
+        // 音楽再生許可ダイアログをページ読み込み後に表示
+        setTimeout(() => {
+            if (window.projectGenesisApp && typeof window.projectGenesisApp.showAudioPermissionDialog === 'function') {
+                console.log('リロード後のダイアログ表示実行');
+                window.projectGenesisApp.showAudioPermissionDialog();
+            } else {
+                console.error('アプリケーションまたはダイアログメソッドが見つかりません');
+            }
+        }, 2000); // 2秒後に実行
+        
+    }, 100);
 });

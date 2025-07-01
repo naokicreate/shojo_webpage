@@ -2290,6 +2290,7 @@ img.gallery-item-image {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.6;
     }
+
     50% {
         transform: translate(-50%, -50%) scale(2.2);
         opacity: 0.2;
@@ -2502,5 +2503,172 @@ img.gallery-item-image {
     
     .volume-slider {
         width: 50px;
+    }
+}
+
+/* === AUDIO PERMISSION MODAL === */
+.audio-permission-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.audio-permission-modal.hidden {
+    display: none !important;
+}
+
+.audio-permission-modal:not(.hidden) {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.audio-permission-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.audio-permission-content {
+    position: relative;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.audio-permission-modal:not(.hidden) .audio-permission-content {
+    transform: scale(1);
+}
+
+.audio-permission-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.audio-permission-icon {
+    width: 48px;
+    height: 48px;
+    color: #3b82f6;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+.audio-permission-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.audio-permission-description {
+    color: #d1d5db;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.audio-permission-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.audio-permission-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.audio-permission-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.audio-permission-btn.primary {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.audio-permission-btn.primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.audio-permission-btn.secondary {
+    background: rgba(75, 85, 99, 0.8);
+    color: #d1d5db;
+    border: 1px solid rgba(75, 85, 99, 0.5);
+}
+
+.audio-permission-btn.secondary:hover {
+    background: rgba(75, 85, 99, 1);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.audio-permission-note {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 640px) {
+    .audio-permission-content {
+        padding: 24px;
+        margin: 16px;
+    }
+    
+    .audio-permission-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .audio-permission-btn {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .audio-permission-title {
+        font-size: 20px;
+    }
+    
+    .audio-permission-description {
+        font-size: 14px;
     }
 }

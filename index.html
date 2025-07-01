@@ -428,6 +428,40 @@
                 </div>
             </div>
 
+            <!-- 音楽再生確認ダイアログ -->
+            <div id="audio-permission-modal" class="audio-permission-modal hidden">
+                <div class="audio-permission-overlay"></div>
+                <div class="audio-permission-content">
+                    <div class="audio-permission-header">
+                        <svg class="audio-permission-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        </svg>
+                        <h3 class="audio-permission-title">背景音楽を再生しますか？</h3>
+                    </div>
+                    <p class="audio-permission-description">
+                        このサイトでは雰囲気を高めるために背景音楽を用意しています。<br>
+                        音楽を再生してより没入感のある体験をお楽しみください。
+                    </p>
+                    <div class="audio-permission-buttons">
+                        <button id="audio-permission-yes" class="audio-permission-btn primary">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            再生する
+                        </button>
+                        <button id="audio-permission-no" class="audio-permission-btn secondary">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                            今は再生しない
+                        </button>
+                    </div>
+                    <div class="audio-permission-note">
+                        <small>音量は画面右上のコントロールで調整できます</small>
+                    </div>
+                </div>
+            </div>
+
             <!-- 音声コントロール -->
             <div id="audio-control" class="audio-control-container">
                 <audio id="background-audio" preload="none" loop>
