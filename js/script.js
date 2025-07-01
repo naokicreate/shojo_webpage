@@ -20,17 +20,20 @@ class ProjectGenesisApp {
         this.newsBtn = document.getElementById('btn-news');
         this.worldviewBtn = document.getElementById('btn-worldview');
         this.charactersBtn = document.getElementById('btn-characters');
+        this.musicBtn = document.getElementById('btn-music');
         
         this.newsContent = document.getElementById('content-news');
         this.worldviewContent = document.getElementById('content-worldview');
         this.charactersContent = document.getElementById('content-characters');
+        this.musicContent = document.getElementById('content-music');
         this.aegisContent = document.getElementById('content-aegis');
         this.gehennaContent = document.getElementById('content-gehenna');
 
         this.allContent = [
             this.newsContent,
             this.worldviewContent, 
-            this.charactersContent, 
+            this.charactersContent,
+            this.musicContent,
             this.aegisContent, 
             this.gehennaContent
         ];
@@ -51,6 +54,11 @@ class ProjectGenesisApp {
         this.charactersBtn.addEventListener('click', () => {
             this.showContent(this.charactersContent);
             this.setActiveTab(this.charactersBtn);
+        });
+
+        this.musicBtn.addEventListener('click', () => {
+            this.showContent(this.musicContent);
+            this.setActiveTab(this.musicBtn);
         });
 
         // Event Listeners for details buttons (delegated event handling)
@@ -76,7 +84,7 @@ class ProjectGenesisApp {
         }
         
         // Show/hide hero header
-        if (contentToShow === this.newsContent || contentToShow === this.worldviewContent || contentToShow === this.charactersContent) {
+        if (contentToShow === this.newsContent || contentToShow === this.worldviewContent || contentToShow === this.charactersContent || contentToShow === this.musicContent) {
             this.heroHeader.classList.remove('hidden');
         } else {
             this.heroHeader.classList.add('hidden');
@@ -88,6 +96,7 @@ class ProjectGenesisApp {
         this.newsBtn.classList.remove('active');
         this.worldviewBtn.classList.remove('active');
         this.charactersBtn.classList.remove('active');
+        this.musicBtn.classList.remove('active');
         
         // Add active class to clicked button
         activeBtn.classList.add('active');
@@ -1230,6 +1239,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('アプリケーション初期化開始');
         window.projectGenesisApp = new ProjectGenesisApp();
         
+        // ミュージックマネージャーの初期化
+        window.musicManager = new MusicManager();
+        
         // GitHub Pages環境でのダイアログ表示
         // さらに長い遅延を設けて確実に表示
         setTimeout(() => {
@@ -1265,3 +1277,550 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }, 200); // DOM読み込み後の遅延を200msに増加
 });
+
+class MusicManager {
+    constructor() {
+        this.tracks = [];
+        this.filteredTracks = [];
+        this.currentTrack = null;
+        this.audio = null;
+        this.isPlaying = false;
+        
+        this.init();
+    }
+    
+    async init() {
+        try {
+            console.log('音楽マネージャーを初期化中...');
+            this.showLoading();
+            await this.loadMusicData();
+            this.setupEventListeners();
+            this.setupMusicModal();
+            this.hideLoading();
+            this.renderTracks();
+        } catch (error) {
+            console.error('音楽マネージャー初期化エラー:', error);
+            this.showError('音楽データの読み込みに失敗しました。');
+        }
+    }
+    
+    async loadMusicData() {
+        try {
+            console.log('音楽データの読み込みを開始...');
+            const response = await fetch('./data/music.json');
+            console.log('Response status:', response.status);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('読み込んだJSONデータ:', data);
+            this.tracks = data.tracks || [];
+            this.filteredTracks = [...this.tracks];
+            console.log(`${this.tracks.length}曲の音楽データを読み込みました`);
+            console.log('楽曲データ:', this.tracks);
+        } catch (error) {
+            console.error('音楽データ読み込みエラー:', error);
+            throw error;
+        }
+    }
+    
+    setupEventListeners() {
+        // フィルター要素
+        const tagFilter = document.getElementById('music-tag-filter');
+        const genreFilter = document.getElementById('music-genre-filter');
+        const moodFilter = document.getElementById('music-mood-filter');
+        const sortSelect = document.getElementById('music-sort');
+        const searchInput = document.getElementById('music-search');
+        const clearBtn = document.getElementById('clear-filters');
+        
+        if (tagFilter) tagFilter.addEventListener('change', () => this.applyFilters());
+        if (genreFilter) genreFilter.addEventListener('change', () => this.applyFilters());
+        if (moodFilter) moodFilter.addEventListener('change', () => this.applyFilters());
+        if (sortSelect) sortSelect.addEventListener('change', () => this.applyFilters());
+        if (searchInput) searchInput.addEventListener('input', () => this.applyFilters());
+        if (clearBtn) clearBtn.addEventListener('click', () => this.clearFilters());
+        
+        this.populateFilterOptions();
+    }
+    
+    populateFilterOptions() {
+        const tags = new Set();
+        const genres = new Set();
+        const moods = new Set();
+        
+        this.tracks.forEach(track => {
+            track.tags?.forEach(tag => tags.add(tag));
+            if (track.genre) genres.add(track.genre);
+            if (track.mood) moods.add(track.mood);
+        });
+        
+        this.populateSelect('music-tag-filter', Array.from(tags));
+        this.populateSelect('music-genre-filter', Array.from(genres));
+        this.populateSelect('music-mood-filter', Array.from(moods));
+    }
+    
+    populateSelect(selectId, options) {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        
+        // 既存のオプション（最初のもの以外）をクリア
+        while (select.children.length > 1) {
+            select.removeChild(select.lastChild);
+        }
+        
+        options.sort().forEach(option => {
+            const optionElement = document.createElement('option');
+            optionElement.value = option;
+            optionElement.textContent = option;
+            select.appendChild(optionElement);
+        });
+    }
+    
+    applyFilters() {
+        const tagFilter = document.getElementById('music-tag-filter')?.value || '';
+        const genreFilter = document.getElementById('music-genre-filter')?.value || '';
+        const moodFilter = document.getElementById('music-mood-filter')?.value || '';
+        const sortValue = document.getElementById('music-sort')?.value || 'newest';
+        const searchTerm = document.getElementById('music-search')?.value.toLowerCase() || '';
+        
+        this.filteredTracks = this.tracks.filter(track => {
+            const matchesTag = !tagFilter || track.tags?.includes(tagFilter);
+            const matchesGenre = !genreFilter || track.genre === genreFilter;
+            const matchesMood = !moodFilter || track.mood === moodFilter;
+            const matchesSearch = !searchTerm || 
+                track.title.toLowerCase().includes(searchTerm) ||
+                track.artist.toLowerCase().includes(searchTerm) ||
+                track.description?.toLowerCase().includes(searchTerm);
+            
+            return matchesTag && matchesGenre && matchesMood && matchesSearch;
+        });
+        
+        // ソート
+        this.sortTracks(sortValue);
+        this.renderTracks();
+    }
+    
+    sortTracks(sortBy) {
+        switch (sortBy) {
+            case 'newest':
+                this.filteredTracks.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+                break;
+            case 'oldest':
+                this.filteredTracks.sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate));
+                break;
+            case 'title':
+                this.filteredTracks.sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case 'artist':
+                this.filteredTracks.sort((a, b) => a.artist.localeCompare(b.artist));
+                break;
+        }
+    }
+    
+    clearFilters() {
+        const elements = [
+            'music-tag-filter',
+            'music-genre-filter', 
+            'music-mood-filter',
+            'music-sort',
+            'music-search'
+        ];
+        
+        elements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                if (element.tagName === 'SELECT') {
+                    element.selectedIndex = 0;
+                } else {
+                    element.value = '';
+                }
+            }
+        });
+        
+        this.filteredTracks = [...this.tracks];
+        this.renderTracks();
+    }
+    
+    renderTracks() {
+        const container = document.getElementById('music-grid');
+        console.log('renderTracks called - container:', container);
+        console.log('filteredTracks length:', this.filteredTracks.length);
+        
+        if (!container) {
+            console.error('Music grid container not found!');
+            return;
+        }
+        
+        if (this.filteredTracks.length === 0) {
+            console.log('No filtered tracks to display');
+            container.innerHTML = '<div class="music-error">該当する楽曲が見つかりませんでした。</div>';
+            return;
+        }
+        
+        console.log('Rendering tracks...');
+        container.innerHTML = this.filteredTracks.map(track => this.createTrackCard(track)).join('');
+        
+        // イベントリスナーを追加
+        this.attachTrackEventListeners();
+    }
+    
+    createTrackCard(track) {
+        const tagsHtml = track.tags?.map(tag => 
+            `<span class="music-tag">${tag}</span>`
+        ).join('') || '';
+        
+        return `
+            <div class="music-card" data-track-id="${track.id}">
+                <div class="music-card-cover">
+                    <img src="${track.coverImage}" alt="${track.title}" class="music-card-image" loading="lazy">
+                    <div class="music-card-play-overlay">
+                        <button class="music-card-play-btn" data-track-id="${track.id}" title="楽曲を再生">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="music-card-content">
+                    <h3 class="music-card-title">${track.title}</h3>
+                    <p class="music-card-artist">${track.artist}</p>
+                    <div class="music-card-info">
+                        <span>${track.duration}</span>
+                        <span>${track.genre || ''}</span>
+                    </div>
+                    <div class="music-card-tags">
+                        ${tagsHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    attachTrackEventListeners() {
+        // カードクリックでモーダル表示
+        document.querySelectorAll('.music-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.music-card-play-btn')) return;
+                
+                const trackId = card.dataset.trackId;
+                this.showTrackModal(trackId);
+            });
+        });
+        
+        // 再生ボタンクリック
+        document.querySelectorAll('.music-card-play-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const trackId = btn.dataset.trackId;
+                this.toggleTrackPlayback(trackId);
+            });
+        });
+    }
+    
+    toggleTrackPlayback(trackId) {
+        const track = this.tracks.find(t => t.id === trackId);
+        if (!track || !track.previewUrl) return;
+        
+        if (this.currentTrack?.id === trackId && this.isPlaying) {
+            this.pauseTrack();
+        } else {
+            this.playTrack(track);
+        }
+    }
+    
+    playTrack(track) {
+        if (!track.previewUrl) return;
+        
+        // 既存のオーディオを停止
+        if (this.audio) {
+            this.audio.pause();
+            this.audio = null;
+        }
+        
+        this.audio = new Audio(track.previewUrl);
+        this.currentTrack = track;
+        
+        this.audio.addEventListener('loadstart', () => {
+            console.log(`楽曲を読み込み中: ${track.title}`);
+        });
+        
+        this.audio.addEventListener('canplay', () => {
+            this.audio.play().then(() => {
+                this.isPlaying = true;
+                this.updatePlaybackUI();
+                console.log(`楽曲を再生中: ${track.title}`);
+            }).catch(error => {
+                console.error('再生エラー:', error);
+                this.showError('楽曲の再生に失敗しました。');
+            });
+        });
+        
+        this.audio.addEventListener('ended', () => {
+            this.isPlaying = false;
+            this.updatePlaybackUI();
+        });
+        
+        this.audio.addEventListener('error', (e) => {
+            console.error('オーディオエラー:', e);
+            this.showError('楽曲の読み込みに失敗しました。');
+        });
+    }
+    
+    pauseTrack() {
+        if (this.audio) {
+            this.audio.pause();
+            this.isPlaying = false;
+            this.updatePlaybackUI();
+        }
+    }
+    
+    updatePlaybackUI() {
+        // カード内の再生ボタンとカード自体を更新
+        document.querySelectorAll('.music-card').forEach(card => {
+            const playBtn = card.querySelector('.music-card-play-btn');
+            if (playBtn) {
+                const trackId = playBtn.dataset.trackId;
+                const isCurrentTrack = this.currentTrack?.id === trackId;
+                const isPlaying = isCurrentTrack && this.isPlaying;
+                
+                // カードに playing クラスを追加/削除
+                card.classList.toggle('playing', isPlaying);
+                
+                // 再生ボタンのアイコンを更新
+                playBtn.innerHTML = isPlaying ? 
+                    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>' :
+                    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+            }
+        });
+        
+        // モーダル内の再生ボタンとモーダル自体も更新
+        const modal = document.getElementById('music-modal');
+        const modalPlayBtn = document.getElementById('music-modal-play-btn');
+        if (modalPlayBtn && modal) {
+            const isCurrentModalTrack = modalPlayBtn.dataset.trackId === this.currentTrack?.id;
+            const isModalPlaying = isCurrentModalTrack && this.isPlaying;
+            
+            // モーダルに playing クラスを追加/削除
+            modal.classList.toggle('playing', isModalPlaying);
+            modalPlayBtn.classList.toggle('playing', isModalPlaying);
+        }
+    }
+    
+    setupMusicModal() {
+        const modal = document.getElementById('music-modal');
+        const closeBtn = document.querySelector('.music-modal-close');
+        const overlay = document.querySelector('.music-modal-overlay');
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => this.hideMusicModal());
+        }
+        
+        if (overlay) {
+            overlay.addEventListener('click', () => this.hideMusicModal());
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                this.hideMusicModal();
+            }
+        });
+    }
+    
+    showTrackModal(trackId) {
+        const track = this.tracks.find(t => t.id === trackId);
+        if (!track) return;
+        
+        const modal = document.getElementById('music-modal');
+        if (!modal) return;
+        
+        // モーダル内容を更新
+        this.populateModalContent(track);
+        
+        // モーダル表示
+        modal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+        
+        // フォーカス管理
+        setTimeout(() => {
+            const closeBtn = modal.querySelector('.music-modal-close');
+            if (closeBtn) closeBtn.focus();
+        }, 100);
+    }
+    
+    populateModalContent(track) {
+        // 基本情報
+        this.setElementContent('music-modal-image', { src: track.coverImage, alt: track.title });
+        this.setElementContent('music-modal-title', track.title);
+        this.setElementContent('music-modal-artist', track.artist);
+        this.setElementContent('music-modal-duration', track.duration);
+        this.setElementContent('music-modal-genre', track.genre || '');
+        this.setElementContent('music-modal-mood', track.mood || '');
+        this.setElementContent('music-modal-description', track.description || '');
+        
+        // タグ
+        const tagsContainer = document.getElementById('music-modal-tags-container');
+        if (tagsContainer && track.tags) {
+            tagsContainer.innerHTML = track.tags.map(tag => 
+                `<span class="music-tag">${tag}</span>`
+            ).join('');
+        }
+        
+        // 歌詞
+        const lyricsSection = document.getElementById('music-modal-lyrics-section');
+        const lyricsElement = document.getElementById('music-modal-lyrics');
+        if (track.lyrics && track.lyrics.trim() !== '' && !track.lyrics.includes('インストゥルメンタルのため歌詞はありません')) {
+            // /n を <br> に変換して改行を正しく表示
+            const formattedLyrics = track.lyrics.replace(/\/n/g, '<br>');
+            lyricsElement.innerHTML = formattedLyrics;
+            lyricsSection.style.display = 'block';
+        } else {
+            lyricsSection.style.display = 'none';
+        }
+        
+        // 制作ノート
+        const notesSection = document.getElementById('music-modal-notes-section');
+        const notesElement = document.getElementById('music-modal-notes');
+        if (track.productionNotes) {
+            notesElement.textContent = track.productionNotes;
+            notesSection.style.display = 'block';
+        } else {
+            notesSection.style.display = 'none';
+        }
+        
+        // YouTube
+        this.setupYouTubeSection(track);
+        
+        // アクションボタン
+        this.setupActionButtons(track);
+        
+        // モーダル内再生ボタン
+        this.setupModalPlayButton(track);
+    }
+    
+    setupYouTubeSection(track) {
+        const youtubeSection = document.getElementById('music-modal-youtube-section');
+        const youtubePlayer = document.getElementById('music-modal-youtube-player');
+        const youtubeLink = document.getElementById('music-modal-youtube-link');
+        
+        if (track.youtubeUrl) {
+            const videoId = this.extractYouTubeVideoId(track.youtubeUrl);
+            if (videoId) {
+                youtubePlayer.innerHTML = `
+                    <iframe 
+                        src="https://www.youtube.com/embed/${videoId}" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                youtubeLink.href = track.youtubeUrl;
+                youtubeSection.style.display = 'block';
+            } else {
+                youtubeSection.style.display = 'none';
+            }
+        } else {
+            youtubeSection.style.display = 'none';
+        }
+    }
+    
+    extractYouTubeVideoId(url) {
+        const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
+    
+    setupActionButtons(track) {
+        const purchaseLink = document.getElementById('music-modal-purchase-link');
+        if (purchaseLink) {
+            if (track.purchaseUrl) {
+                purchaseLink.href = track.purchaseUrl;
+                purchaseLink.style.display = 'flex';
+            } else {
+                purchaseLink.style.display = 'none';
+            }
+        }
+        
+        const youtubeLink = document.getElementById('music-modal-youtube-link');
+        if (youtubeLink) {
+            if (track.youtubeUrl) {
+                youtubeLink.href = track.youtubeUrl;
+                youtubeLink.style.display = 'flex';
+            } else {
+                youtubeLink.style.display = 'none';
+            }
+        }
+    }
+    
+    setupModalPlayButton(track) {
+        const playBtn = document.getElementById('music-modal-play-btn');
+        if (!playBtn) return;
+        
+        playBtn.dataset.trackId = track.id;
+        
+        // 既存のイベントリスナーを削除
+        const newBtn = playBtn.cloneNode(true);
+        playBtn.parentNode.replaceChild(newBtn, playBtn);
+        
+        // 新しいイベントリスナーを追加
+        newBtn.addEventListener('click', () => {
+            this.toggleTrackPlayback(track.id);
+        });
+        
+        // 初期状態を設定
+        const isCurrentTrack = this.currentTrack?.id === track.id;
+        newBtn.classList.toggle('playing', isCurrentTrack && this.isPlaying);
+    }
+    
+    hideMusicModal() {
+        const modal = document.getElementById('music-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+    }
+    
+    setElementContent(id, content) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        
+        if (typeof content === 'object' && content.src) {
+            // 画像要素の場合
+            element.src = content.src;
+            element.alt = content.alt || '';
+        } else {
+            element.textContent = content;
+        }
+    }
+    
+    showLoading() {
+        const loadingElement = document.getElementById('music-loading');
+        const gridElement = document.getElementById('music-grid');
+        const errorElement = document.getElementById('music-error');
+        
+        if (loadingElement) loadingElement.classList.remove('hidden');
+        if (gridElement) gridElement.classList.add('hidden');
+        if (errorElement) errorElement.classList.add('hidden');
+    }
+    
+    hideLoading() {
+        const loadingElement = document.getElementById('music-loading');
+        const gridElement = document.getElementById('music-grid');
+        
+        if (loadingElement) loadingElement.classList.add('hidden');
+        if (gridElement) gridElement.classList.remove('hidden');
+    }
+    
+    showError(message) {
+        const loadingElement = document.getElementById('music-loading');
+        const gridElement = document.getElementById('music-grid');
+        const errorElement = document.getElementById('music-error');
+        
+        if (loadingElement) loadingElement.classList.add('hidden');
+        if (gridElement) gridElement.classList.add('hidden');
+        if (errorElement) {
+            errorElement.classList.remove('hidden');
+            errorElement.textContent = message;
+        }
+    }
+}

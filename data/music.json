@@ -1,0 +1,38 @@
+{
+  "tracks": [
+    {
+      "id": "music001",
+      "title": "ユノのイメージソング",
+      "artist": "PROJECT: GENESIS",
+      "description": "AEGIS公安部隊所属のユノの心情を表現した楽曲。彼女の内なる葛藤と使命感を繊細なメロディーで描く。",
+      "coverImage": "img/news/thumbnail_yuka_001.png",
+      "tags": ["キャラクターテーマ", "AEGIS", "インストゥルメンタル"],
+      "releaseDate": "2025-07-01",
+      "duration": "3:42",
+      "previewUrl": "audio/hp.mp3",
+      "purchaseUrl": "https://example.com/purchase/yuno-theme",
+      "youtubeUrl": "https://youtu.be/w8n8gVD2jD0",
+      "genre": "Electronic",
+      "mood": "Melancholic",
+      "lyrics": "(Intro)  /nShy… Why…  /n(Verse 1)  /n窓辺の影 そっと隠れた  /nノートの端 綴るモノローグ  /n響く都会の 無機質な音  /n言葉じゃなくて 瞳が語る  /n(Pre-Chorus)  /n指先が触れる 冷たいスクリーン  /n知りたいの？ この胸の奥  /nまだ小さな 私の鼓動  /nその理由を 探してる  /n(Chorus)  /nねぇ なんでだろう？ この空の果て  /nなんでだろう？ 問いかける  /n守りたいのは 微かな光  /nきっとこの先 辿り着ける  /nそう、私だけの Answerへ！  /n(Verse 2)  /n誰にも見せない 足跡の先  /n咲いた一輪 名もなきエール  /n少しだけ違う 世界の歩幅  /nそれこそが私 信じてる  /n(Pre-Chorus)  /n地図にはない道 迷わず進む  /n聞こえるでしょ？ 胸のサイレン  /nこの瞳の奥 揺れる決意  /n誰かを守りたい この願い  /n(Chorus)  /nねぇ なんでだろう？ この空の果て  /nなんでだろう？ 問いかける  /n守りたいのは 微かな光  /nきっとこの先 辿り着ける  /nそう、私だけの Answerへ！  /n(Bridge)  /n夢と痛みが 交差する場所  /n見上げた星は 無数の道標  /n「大丈夫」って 声が響く  /n背中を押す 温かい手  /n(Chorus)  /nねぇ なんでだろう？ この空の果て  /nなんでだろう？ 問いかける  /n守りたいのは 微かな光  /nきっとこの先 辿り着ける  /nそう、私だけの Answerへ！  /n(Outro)  /nShy… Why… Answer… Fly…",
+      "productionNotes": "ユノの複雑な心境を表現するため、冷たいシンセサイザーと温かいストリングスを対比させました。"
+    },
+    {
+      "id": "music002",
+      "title": "AEGIS Anthem",
+      "artist": "PROJECT: GENESIS Orchestra",
+      "description": "ロジック派AEGISの公式テーマソング。秩序と理性を象徴する力強い楽曲。",
+      "coverImage": "img/music/aegis_anthem_cover.jpg",
+      "tags": ["派閥テーマ", "AEGIS", "オーケストラ"],
+      "releaseDate": "2025-06-15",
+      "duration": "4:18",
+      "previewUrl": "audio/aegis_anthem_preview.mp3",
+      "purchaseUrl": "https://example.com/purchase/aegis-anthem",
+      "youtubeUrl": "",
+      "genre": "Orchestral",
+      "mood": "Heroic",
+      "lyrics": "Logic guides our way, Order shows the path  /nIn the realm of reason, we shall never fall  /nAEGIS stands forever, guardian of tomorrow  /nThrough the darkest night, we bring the dawn",
+      "productionNotes": "壮大なオーケストラアレンジで、AEGISの威厳と使命感を表現しました。"
+    }
+  ]
+}

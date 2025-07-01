@@ -25,15 +25,15 @@
       }
     },
     {
-      "id": "news004",
-      "title": "AEGIS都市景観アート公開",
-      "description": "地上最後の理想郷AEGISの美しい都市景観アートワークを公開しました。AIによる完璧な管理社会の姿をご覧ください。",
-      "image": "https://placehold.co/400x400/111827/22d3ee?text=AEGIS+ART",
-      "date": "2025.06.26",
+      "id": "news005",
+      "title": "楽曲の追加",
+      "description": "ユノのイメージソングが公開されました。彼女の心情を表現した楽曲で、物語の世界観をより深く感じていただけます。",
+      "image": "https://placehold.co/400x400/111827/22d3ee?text=GEHENNA+CHARACTER",
+      "date": "2025.07.01",
       "link": {
-        "url": "#aegis",
+        "url": "#characters",
         "type": "internal",
-        "target": "aegis"
+        "target": "characters"
       }
     }
   ]
