@@ -10,6 +10,7 @@ class ProjectGenesisApp {
         this.initImageModal();
         this.initHeaderSlideshow();
         this.initGallerySystem(); // ギャラリーシステムの初期化
+        this.initAudioControl(); // 音声コントロールの初期化
         console.log('ProjectGenesisApp: 初期化完了');
     }
 
@@ -808,6 +809,259 @@ class ProjectGenesisApp {
         
         charactersContainer.innerHTML = fallbackHTML;
         console.log('キャラクターフォールバック描画完了');
+    }
+
+    // === AUDIO CONTROL SYSTEM ===
+    initAudioControl() {
+        console.log('音声コントロール初期化開始');
+        
+        // DOM要素の取得
+        this.audioElement = document.getElementById('background-audio');
+        this.audioToggleBtn = document.getElementById('audio-toggle');
+        this.volumeControl = document.getElementById('volume-control');
+        this.volumeSlider = document.getElementById('volume-slider');
+        this.volumePercentage = document.getElementById('volume-percentage');
+        
+        if (!this.audioElement || !this.audioToggleBtn || !this.volumeControl || !this.volumeSlider) {
+            console.error('音声コントロール要素が見つかりません');
+            return;
+        }
+
+        // 初期設定
+        this.isPlaying = false;
+        this.currentVolume = 0.8; // 80%
+        this.audioElement.volume = this.currentVolume;
+        this.showVolumeControl = false;
+        
+        // ローカルストレージから設定を復元
+        this.loadAudioSettings();
+        
+        // イベントリスナーの設定
+        this.setupAudioEventListeners();
+        
+        // 初期状態の設定
+        this.updateVolumeDisplay();
+        
+        console.log('音声コントロール初期化完了');
+    }
+
+    setupAudioEventListeners() {
+        // 再生/停止ボタンのクリックイベント
+        this.audioToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.toggleAudio();
+        });
+
+        // 音量スライダーのイベント
+        this.volumeSlider.addEventListener('input', (e) => {
+            this.setVolume(parseInt(e.target.value));
+        });
+
+        // マウスオーバーで音量コントロールを表示
+        this.audioToggleBtn.addEventListener('mouseenter', () => {
+            this.showVolumeControls();
+        });
+
+        // 音声コントロール全体からマウスが離れたら音量コントロールを隠す
+        const audioContainer = document.querySelector('.audio-control-container');
+        audioContainer.addEventListener('mouseleave', () => {
+            this.hideVolumeControls();
+        });
+
+        // 音声要素のイベント
+        this.audioElement.addEventListener('loadstart', () => {
+            console.log('音声ファイルの読み込み開始');
+        });
+
+        this.audioElement.addEventListener('canplay', () => {
+            console.log('音声ファイルの再生準備完了');
+        });
+
+        this.audioElement.addEventListener('error', (e) => {
+            console.error('音声ファイルの読み込みエラー:', e);
+            this.handleAudioError();
+        });
+
+        this.audioElement.addEventListener('ended', () => {
+            // ループ設定があるので通常は発生しないが、念のため
+            console.log('音声再生終了');
+            this.isPlaying = false;
+            this.updatePlayButton();
+        });
+
+        // ページの可視性変更を監視（バッテリー節約）
+        document.addEventListener('visibilitychange', () => {
+            this.handleVisibilityChange();
+        });
+    }
+
+    async toggleAudio() {
+        try {
+            if (this.isPlaying) {
+                await this.pauseAudio();
+            } else {
+                await this.playAudio();
+            }
+        } catch (error) {
+            console.error('音声制御エラー:', error);
+            this.handleAudioError();
+        }
+    }
+
+    async playAudio() {
+        try {
+            // 最初の再生時にプリロードを有効化
+            if (this.audioElement.readyState === 0) {
+                this.audioElement.preload = 'auto';
+                this.audioElement.load();
+            }
+
+            await this.audioElement.play();
+            this.isPlaying = true;
+            this.updatePlayButton();
+            this.saveAudioSettings();
+            console.log('音声再生開始');
+        } catch (error) {
+            console.error('音声再生エラー:', error);
+            
+            // ユーザー操作が必要な場合の処理
+            if (error.name === 'NotAllowedError') {
+                console.log('ユーザー操作による再生が必要です');
+                // この場合、ボタンは元の状態を保持
+            } else {
+                this.handleAudioError();
+            }
+            throw error;
+        }
+    }
+
+    async pauseAudio() {
+        try {
+            this.audioElement.pause();
+            this.isPlaying = false;
+            this.updatePlayButton();
+            this.saveAudioSettings();
+            console.log('音声再生停止');
+        } catch (error) {
+            console.error('音声停止エラー:', error);
+            throw error;
+        }
+    }
+
+    setVolume(volume) {
+        // 0-100の範囲を0.0-1.0に変換
+        this.currentVolume = Math.max(0, Math.min(100, volume)) / 100;
+        this.audioElement.volume = this.currentVolume;
+        this.updateVolumeDisplay();
+        this.saveAudioSettings();
+        
+        console.log(`音量設定: ${Math.round(this.currentVolume * 100)}%`);
+    }
+
+    updatePlayButton() {
+        if (this.isPlaying) {
+            this.audioToggleBtn.classList.add('playing');
+            this.audioToggleBtn.title = '背景音楽を停止';
+        } else {
+            this.audioToggleBtn.classList.remove('playing');
+            this.audioToggleBtn.title = '背景音楽を再生';
+        }
+    }
+
+    updateVolumeDisplay() {
+        const volumePercent = Math.round(this.currentVolume * 100);
+        this.volumeSlider.value = volumePercent;
+        this.volumePercentage.textContent = `${volumePercent}%`;
+    }
+
+    showVolumeControls() {
+        this.volumeControl.style.display = 'flex';
+        // 少し遅延させてアニメーションを適用
+        requestAnimationFrame(() => {
+            this.volumeControl.classList.add('show');
+        });
+    }
+
+    hideVolumeControls() {
+        this.volumeControl.classList.remove('show');
+        // アニメーション完了後に非表示
+        setTimeout(() => {
+            if (!this.volumeControl.classList.contains('show')) {
+                this.volumeControl.style.display = 'none';
+            }
+        }, 300);
+    }
+
+    handleAudioError() {
+        console.error('音声システムでエラーが発生しました');
+        this.isPlaying = false;
+        this.updatePlayButton();
+        
+        // エラー状態を視覚的に表示
+        this.audioToggleBtn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        this.audioToggleBtn.title = '音声ファイルの読み込みに失敗しました';
+        
+        // 5秒後に元の状態に戻す
+        setTimeout(() => {
+            this.audioToggleBtn.style.background = '';
+            this.audioToggleBtn.title = '背景音楽の再生/停止';
+        }, 5000);
+    }
+
+    // ページ非表示時の処理（バッテリー節約）
+    handleVisibilityChange() {
+        if (document.hidden) {
+            // ページが非表示になった時の処理
+            if (this.isPlaying) {
+                this.wasPlayingBeforeHidden = true;
+                // 必要に応じて音声を一時停止
+                // this.pauseAudio();
+            }
+        } else {
+            // ページが表示された時の処理
+            if (this.wasPlayingBeforeHidden) {
+                this.wasPlayingBeforeHidden = false;
+                // 必要に応じて音声を再開
+                // this.playAudio();
+            }
+        }
+    }
+
+    // 設定の保存
+    saveAudioSettings() {
+        try {
+            const settings = {
+                volume: this.currentVolume,
+                isPlaying: this.isPlaying
+            };
+            localStorage.setItem('projectGenesis_audioSettings', JSON.stringify(settings));
+        } catch (error) {
+            console.warn('音声設定の保存に失敗:', error);
+        }
+    }
+
+    // 設定の読み込み
+    loadAudioSettings() {
+        try {
+            const savedSettings = localStorage.getItem('projectGenesis_audioSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                
+                // 音量設定の復元
+                if (typeof settings.volume === 'number') {
+                    this.currentVolume = Math.max(0, Math.min(1, settings.volume));
+                    this.audioElement.volume = this.currentVolume;
+                }
+                
+                // 再生状態の復元（自動再生はしない）
+                this.isPlaying = false; // 常にfalseで開始
+                this.updatePlayButton();
+                
+                console.log('音声設定を復元しました');
+            }
+        } catch (error) {
+            console.warn('音声設定の読み込みに失敗:', error);
+        }
     }
 }
 

@@ -428,6 +428,31 @@
                 </div>
             </div>
 
+            <!-- 音声コントロール -->
+            <div id="audio-control" class="audio-control-container">
+                <audio id="background-audio" preload="none" loop>
+                    <source src="audio/title.mp3" type="audio/mpeg">
+                </audio>
+                
+                <button id="audio-toggle" class="audio-toggle-button" title="背景音楽の再生/停止">
+                    <svg class="audio-icon play-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg class="audio-icon pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                </button>
+                
+                <div id="volume-control" class="volume-control" style="display: none;">
+                    <div class="volume-slider-container">
+                        <input type="range" id="volume-slider" min="0" max="100" value="20" class="volume-slider">
+                        <div class="volume-display">
+                            <span id="volume-percentage">20%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ギャラリーモーダル -->
             <div id="gallery-modal" class="gallery-modal hidden">
                 <div class="gallery-modal-overlay"></div>
