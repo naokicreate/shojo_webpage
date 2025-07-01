@@ -822,8 +822,22 @@ class ProjectGenesisApp {
         this.volumeSlider = document.getElementById('volume-slider');
         this.volumePercentage = document.getElementById('volume-percentage');
         
+        console.log('音声要素チェック:', {
+            audioElement: !!this.audioElement,
+            audioToggleBtn: !!this.audioToggleBtn,
+            volumeControl: !!this.volumeControl,
+            volumeSlider: !!this.volumeSlider,
+            volumePercentage: !!this.volumePercentage
+        });
+        
         if (!this.audioElement || !this.audioToggleBtn || !this.volumeControl || !this.volumeSlider) {
             console.error('音声コントロール要素が見つかりません');
+            console.error('見つからない要素:', {
+                audioElement: !this.audioElement ? 'background-audio' : null,
+                audioToggleBtn: !this.audioToggleBtn ? 'audio-toggle' : null,
+                volumeControl: !this.volumeControl ? 'volume-control' : null,
+                volumeSlider: !this.volumeSlider ? 'volume-slider' : null
+            });
             return;
         }
 
