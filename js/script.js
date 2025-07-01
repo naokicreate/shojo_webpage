@@ -829,7 +829,7 @@ class ProjectGenesisApp {
 
         // 初期設定
         this.isPlaying = false;
-        this.currentVolume = 0.8; // 80%
+        this.currentVolume = 0.2; // 20%
         this.audioElement.volume = this.currentVolume;
         this.showVolumeControl = false;
         
@@ -975,7 +975,7 @@ class ProjectGenesisApp {
     }
 
     showVolumeControls() {
-        this.volumeControl.style.display = 'flex';
+        this.volumeControl.style.display = 'block';
         // 少し遅延させてアニメーションを適用
         requestAnimationFrame(() => {
             this.volumeControl.classList.add('show');
