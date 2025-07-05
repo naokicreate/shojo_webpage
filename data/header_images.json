@@ -11,14 +11,14 @@
       "type": "png"
     },
     {
-      "path": "img/main_header/ComfyUI_00025_.png",
-      "duration": 6000,
-      "type": "png"
-    },
-    {
       "path": "img/main_header/unnamed.jpg",
       "duration": 6000,
       "type": "jpg"
+    },
+    {
+      "path": "img/main_header/output_optimized.webp",
+      "duration": 6000,
+      "type": "webp"
     }
   ],
   "settings": {

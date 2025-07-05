@@ -2,11 +2,11 @@
   "tracks": [
     {
       "id": "music001",
-      "title": "ユノのイメージソング",
+      "title": "テーマソング",
       "artist": "PROJECT: GENESIS by SUNO",
       "description": "AEGIS公安部隊所属のユノの心情を表現した楽曲。彼女の内なる葛藤と使命感を繊細なメロディーで描く。",
       "coverImage": "img/news/thumbnail_yuka_001.png",
-      "tags": ["キャラクターテーマ", "AEGIS", "YUNO"],
+      "tags": ["Worldviewテーマ", "AEGIS", "YUNO"],
       "releaseDate": "2025-07-01",
       "duration": "3:18",
       "previewUrl": "audio/hp.mp3",
