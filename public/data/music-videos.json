@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "終焉への序章",
+    "publishedAt": "2024-01-20",
+    "youtubeId": "BUXZbU9uv5o",
+    "thumbnail": "god.png",
+    "description": "プロジェクト第一弾となるMV。ユノとアリサの出会いを描いた感動的な作品。",
+    "lyrics": "\n        verse 1:\n        終焉の街角で\n        君と出会った\n        \n        chorus:\n        運命が交差する\n        この瞬間を\n      ",
+    "tags": [
+      "ユノ",
+      "アリサ",
+      "出会い",
+      "序章"
+    ],
+    "createdAt": "2025-07-06 12:26:58",
+    "updatedAt": "2025-07-06 12:26:58",
+    "audioPath": "/audio/god.mp3"
+  }
+]

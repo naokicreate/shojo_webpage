@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "characterId": "yuno",
+    "name": "ユノ",
+    "unitName": "ロジック派",
+    "image": "chara_yuka_001.png",
+    "profile": "\n        <p>ロジック派の若き戦闘員。論理的思考を重視し、感情を抑制することで戦闘力を高めている。</p>\n        <p>幼い頃から厳格な訓練を受けており、任務に対する責任感が強い。しかし、アリサとの出会いにより、内に秘めた感情が揺れ動き始める。</p>\n      ",
+    "profileTable": [
+      {
+        "label": "名前",
+        "value": "ユノ"
+      },
+      {
+        "label": "年齢",
+        "value": "17歳"
+      },
+      {
+        "label": "所属",
+        "value": "ロジック派 第3戦闘部隊"
+      },
+      {
+        "label": "居住区",
+        "value": "セクター7"
+      },
+      {
+        "label": "特技",
+        "value": "戦術分析、剣術"
+      }
+    ],
+    "correlationDiagram": "/api/placeholder/600/400",
+    "createdAt": "2025-07-06 12:26:58",
+    "updatedAt": "2025-07-06 12:26:58"
+  },
+  {
+    "id": 2,
+    "characterId": "arisa",
+    "name": "アリサ",
+    "unitName": "感情派",
+    "image": "/api/placeholder/300/400",
+    "profile": "\n        <p>感情派の戦闘員。豊かな感情表現と直感を武器に戦う。明るく人懐っこい性格で、仲間からの信頼も厚い。</p>\n        <p>感情派の理念を深く信じているが、ユノとの交流を通じて、対立する派閥への理解を深めていく。</p>\n      ",
+    "profileTable": [
+      {
+        "label": "名前",
+        "value": "アリサ"
+      },
+      {
+        "label": "年齢",
+        "value": "16歳"
+      },
+      {
+        "label": "所属",
+        "value": "感情派 第1戦闘部隊"
+      },
+      {
+        "label": "居住区",
+        "value": "セクター12"
+      },
+      {
+        "label": "特技",
+        "value": "感情増幅、銃撃戦"
+      }
+    ],
+    "correlationDiagram": "/api/placeholder/600/400",
+    "createdAt": "2025-07-06 12:26:58",
+    "updatedAt": "2025-07-06 12:26:58"
+  }
+]

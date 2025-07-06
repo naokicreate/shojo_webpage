@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "imagePath": "/images/headers/header_001.png",
+    "imageType": "png",
+    "displayDuration": 4,
+    "isActive": 1,
+    "sortOrder": 1,
+    "createdAt": "2025-07-06 13:16:51",
+    "updatedAt": "2025-07-06 13:16:51"
+  },
+  {
+    "id": 2,
+    "imagePath": "/images/headers/header_002.jpg",
+    "imageType": "jpg",
+    "displayDuration": 4,
+    "isActive": 1,
+    "sortOrder": 2,
+    "createdAt": "2025-07-06 13:16:51",
+    "updatedAt": "2025-07-06 13:16:51"
+  },
+  {
+    "id": 3,
+    "imagePath": "/images/headers/header_004.webp",
+    "imageType": "webp",
+    "displayDuration": 0,
+    "isActive": 1,
+    "sortOrder": 4,
+    "createdAt": "2025-07-06 13:16:51",
+    "updatedAt": "2025-07-06 13:16:51"
+  }
+]
