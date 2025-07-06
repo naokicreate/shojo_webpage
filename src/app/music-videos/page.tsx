@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import MiniAudioPlayer from '@/components/ui/mini-audio-player';
 import { CalendarIcon, PlayIcon } from 'lucide-react';
 
 interface MusicVideo {
@@ -18,6 +19,7 @@ interface MusicVideo {
   description: string;
   lyrics: string;
   tags: string[];
+  audioPath: string | null;
 }
 
 export default function MusicVideosPage() {
@@ -119,7 +121,14 @@ export default function MusicVideosPage() {
                   )}
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <PlayIcon className="w-12 h-12 text-white" />
+                    {mv.audioPath ? (
+                      <MiniAudioPlayer 
+                        audioPath={mv.audioPath} 
+                        className="transform scale-110"
+                      />
+                    ) : (
+                      <PlayIcon className="w-12 h-12 text-white" />
+                    )}
                   </div>
                 </div>
 

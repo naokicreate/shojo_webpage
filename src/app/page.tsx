@@ -22,7 +22,7 @@ interface MusicVideo {
   title: string;
   publishedAt: string;
   youtubeId: string;
-  thumbnail: string;
+  thumbnail: string | null;
   description: string;
   lyrics: string;
   tags: string[];
@@ -142,7 +142,13 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="relative aspect-video md:aspect-auto">
                     <Image
-                      src={latestMV.thumbnail}
+                      src={
+                        latestMV.thumbnail 
+                          ? `/images/music-videos/${latestMV.thumbnail}`
+                          : latestMV.youtubeId 
+                            ? `https://img.youtube.com/vi/${latestMV.youtubeId}/maxresdefault.jpg`
+                            : `/images/music-videos/placeholder.png`
+                      }
                       alt={latestMV.title}
                       fill
                       className="object-cover rounded-l-lg"

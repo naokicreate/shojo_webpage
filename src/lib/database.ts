@@ -20,6 +20,7 @@ interface MusicVideoRow {
   description: string;
   lyrics: string;
   tags: string; // JSON文字列
+  audioPath: string; // mp3ファイルのパス
   createdAt: string;
   updatedAt: string;
 }
@@ -89,6 +90,7 @@ export function initializeDatabase() {
       description TEXT NOT NULL,
       lyrics TEXT NOT NULL,
       tags TEXT NOT NULL, -- JSON文字列として保存
+      audioPath TEXT, -- mp3ファイルのパス
       createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
       updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
     )
@@ -218,7 +220,7 @@ function insertSampleData() {
 
   // MVのサンプルデータ
   const insertMV = db.prepare(`
-    INSERT INTO music_videos (title, publishedAt, youtubeId, thumbnail, description, lyrics, tags) VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO music_videos (title, publishedAt, youtubeId, thumbnail, description, lyrics, tags, audioPath) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   const mvData = [
@@ -237,12 +239,13 @@ function insertSampleData() {
         運命が交差する
         この瞬間を
       `,
-      tags: JSON.stringify(['ユノ', 'アリサ', '出会い', '序章'])
+      tags: JSON.stringify(['ユノ', 'アリサ', '出会い', '序章']),
+      audioPath: '/audio/shuuen_no_josho.mp3'
     }
   ];
 
   mvData.forEach(mv => {
-    insertMV.run(mv.title, mv.publishedAt, mv.youtubeId, mv.thumbnail, mv.description, mv.lyrics, mv.tags);
+    insertMV.run(mv.title, mv.publishedAt, mv.youtubeId, mv.thumbnail, mv.description, mv.lyrics, mv.tags, mv.audioPath);
   });
 
   // キャラクターのサンプルデータ

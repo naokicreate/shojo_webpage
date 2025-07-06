@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import AudioPlayer from '@/components/ui/audio-player';
 import { ArrowLeftIcon, CalendarIcon, PlayIcon, ExternalLinkIcon } from 'lucide-react';
 
 interface MusicVideo {
@@ -19,6 +20,7 @@ interface MusicVideo {
   description: string;
   lyrics: string;
   tags: string[];
+  audioPath: string | null;
 }
 
 export default function MusicVideoDetailPage() {
@@ -181,6 +183,21 @@ export default function MusicVideoDetailPage() {
                 </div>
               )}
             </motion.div>
+
+            {/* 音楽プレイヤー */}
+            {musicVideo.audioPath && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mb-8"
+              >
+                <AudioPlayer 
+                  audioPath={musicVideo.audioPath} 
+                  title={musicVideo.title}
+                />
+              </motion.div>
+            )}
 
             {/* 説明文 */}
             <motion.div
