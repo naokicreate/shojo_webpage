@@ -47,6 +47,17 @@ interface WorldviewRow {
   updatedAt: string;
 }
 
+interface HeaderImageRow {
+  id: number;
+  imagePath: string;
+  imageType: 'png' | 'jpg' | 'webp'; // 画像フォーマット
+  displayDuration: number; // 表示時間（秒）
+  isActive: boolean; // アクティブフラグ
+  sortOrder: number; // 表示順序
+  createdAt: string;
+  updatedAt: string;
+}
+
 // データベースファイルのパス
 const dbPath = path.join(process.cwd(), 'database.sqlite');
 
@@ -107,6 +118,20 @@ export function initializeDatabase() {
       description TEXT NOT NULL,
       mainImage TEXT NOT NULL,
       keywords TEXT NOT NULL, -- JSON文字列として保存
+      createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
+      updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  // ヘッダー画像テーブル
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS header_images (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      imagePath TEXT NOT NULL,
+      imageType TEXT NOT NULL CHECK(imageType IN ('png', 'jpg', 'webp')),
+      displayDuration INTEGER NOT NULL DEFAULT 5,
+      isActive BOOLEAN NOT NULL DEFAULT 1,
+      sortOrder INTEGER NOT NULL DEFAULT 0,
       createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
       updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
     )
@@ -327,6 +352,45 @@ function insertSampleData() {
     insertWorldview.run(worldview.name, worldview.description, worldview.mainImage, worldview.keywords);
   });
 
+  // ヘッダー画像のサンプルデータ
+  const insertHeaderImage = db.prepare(`
+    INSERT INTO header_images (imagePath, imageType, displayDuration, isActive, sortOrder) VALUES (?, ?, ?, ?, ?)
+  `);
+
+  const headerImageData = [
+    {
+      imagePath: '/images/headers/header_01.png',
+      imageType: 'png',
+      displayDuration: 8,
+      isActive: true,
+      sortOrder: 1
+    },
+    {
+      imagePath: '/images/headers/header_02.jpg',
+      imageType: 'jpg',
+      displayDuration: 6,
+      isActive: true,
+      sortOrder: 2
+    },
+    {
+      imagePath: '/images/headers/header_animation.webp',
+      imageType: 'webp',
+      displayDuration: 0, // WEBPアニメーションはアニメーション再生時間に依存
+      isActive: true,
+      sortOrder: 3
+    }
+  ];
+
+  headerImageData.forEach(headerImage => {
+    insertHeaderImage.run(
+      headerImage.imagePath,
+      headerImage.imageType,
+      headerImage.displayDuration,
+      headerImage.isActive,
+      headerImage.sortOrder
+    );
+  });
+
   console.log('サンプルデータを挿入しました');
 }
 
@@ -417,6 +481,18 @@ export const worldviewQueries = {
       };
     }
     return null;
+  }
+};
+
+export const headerImageQueries = {
+  getActive: () => {
+    return db.prepare('SELECT * FROM header_images WHERE isActive = 1 ORDER BY sortOrder').all() as HeaderImageRow[];
+  },
+  getAll: () => {
+    return db.prepare('SELECT * FROM header_images ORDER BY sortOrder').all() as HeaderImageRow[];
+  },
+  getById: (id: string) => {
+    return db.prepare('SELECT * FROM header_images WHERE id = ?').get(id) as HeaderImageRow | undefined;
   }
 };
 

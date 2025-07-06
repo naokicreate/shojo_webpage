@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import HeaderImageSlider from '@/components/ui/header-image-slider';
 import { ArrowRight, Play, Users, Globe } from 'lucide-react';
 
 // 型定義
@@ -92,13 +93,15 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(/api/placeholder/1920/1080)',
-          }}
-        />
+        {/* ヘッダー画像スライダー（背景として最下層） */}
+        <HeaderImageSlider />
+        
+        {/* 元のグラデーション背景（フォールバック）ヘッダー画像より下 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-gray-900 -z-10" />
+        
+        {/* 画像の上に重ねるグラデーションオーバーレイ */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-black/40 to-gray-900/60 z-10" />
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,11 +141,11 @@ export default function Home() {
               <CardContent className="p-0">
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="relative aspect-video md:aspect-auto">
-                    <div 
-                      className="w-full h-full bg-cover bg-center rounded-l-lg"
-                      style={{
-                        backgroundImage: `url(${latestMV.thumbnail})`,
-                      }}
+                    <Image
+                      src={latestMV.thumbnail}
+                      alt={latestMV.title}
+                      fill
+                      className="object-cover rounded-l-lg"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                       <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-black">
