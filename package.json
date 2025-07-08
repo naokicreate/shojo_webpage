@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev-turbo": "next dev --turbopack",
     "build": "next build",
-    "build:github": "set GITHUB_PAGES=true && next build",
+    "build:github": "cross-env GITHUB_PAGES=true next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -33,6 +33,7 @@
     "@types/node-fetch": "^2.6.12",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "prettier": "^3.6.2",
